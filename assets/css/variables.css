@@ -1,0 +1,49 @@
+/* 
+===================================================
+   Variables & Design Tokens
+=================================================== 
+*/
+:root {
+  /* Colors */
+  --primary-blue: #143FA8;
+  --primary-blue-hover: #0f3080;
+  --orange: #FF5A1F;
+  --orange-hover: #e04b16;
+  --green: #18B56B;
+  --green-hover: #139155;
+  --dark-navy: #0B1F4F;
+  
+  --white: #FFFFFF;
+  --light-gray: #F8FAFC;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  /* Typography */
+  --font-main: 'Inter', sans-serif;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-soft: 0 15px 35px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* Layout */
+  --container-width: 1400px;
+  --header-height: clamp(70px, 8vw, 90px);
+  --header-height-scrolled: clamp(60px, 7vw, 70px);
+  --section-padding: clamp(3rem, 6vw + 1rem, 6rem) 0;
+}
+

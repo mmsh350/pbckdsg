@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning & Budget Commission</title>
+    <meta name="description" content="A world class and dynamic Planning and Budget Agency">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="icon" href="assets/favicon/cropped-KDSG-pbc_favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="assets/favicon/cropped-KDSG-pbc_favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="assets/favicon/cropped-KDSG-pbc_favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="assets/favicon/cropped-KDSG-pbc_favicon-270x270.png" />
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="#" class="logo" aria-label="Home">
+                <img src="assets/images/logo/logo-dark.png" alt="Kaduna State Planning & Budget Commission Logo" class="logo-img">
+            </a>
+
+            <!-- Navigation -->
+            <nav class="nav" id="nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item dropdown">
+                          <a href="#departments" class="nav-link dropdown-toggle" aria-expanded="false">Departments 
+<svg class="dropdown-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown-submenu">
+                                  <a href="#" class="dropdown-link dropdown-submenu-toggle">Departments <svg class="submenu-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                                  <ul class="dropdown-menu sub-menu">
+                                      <li><a href="#" class="dropdown-link">Planning Department</a></li>
+                                      <li><a href="#" class="dropdown-link">Budget Department</a></li>
+                                      <li><a href="#" class="dropdown-link">Monitoring & Evaluation Dept.</a></li>
+                                      <li><a href="#" class="dropdown-link">Dev. Aid & Coordination Dept.</a></li>
+                                      <li><a href="#" class="dropdown-link">Admin & HR Department</a></li>
+                                  </ul>
+                              </li>
+                              <li class="dropdown-submenu">
+                                  <a href="#" class="dropdown-link dropdown-submenu-toggle">Units <svg class="submenu-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                                  <ul class="dropdown-menu sub-menu">
+                                      <li><a href="#" class="dropdown-link">Kaduna State SDGs Unit</a></li>
+                                      <li><a href="#" class="dropdown-link">SOC Unit</a></li>
+                                      <li><a href="#" class="dropdown-link">Economic Intelligence Unit</a></li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a href="#parastatals" class="nav-link dropdown-toggle" aria-expanded="false">Parastatals 
+<svg class="dropdown-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="bureau.html" class="dropdown-link">Bureau of Statistics</a></li>
+                              <li><a href="#" class="dropdown-link">Residents Registration Agency</a></li>
+                          </ul>
+                      </li>
+                      <li class="nav-item"><a href="#publications" class="nav-link">Downloads</a></li>
+                      <li class="nav-item"><a href="#news" class="nav-link">News</a></li>
+                      <li class="nav-item"><a href="#contact" class="nav-link">Contact Us</a></li>
+                  </ul>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <a href="https://www.opengovpartnership.org/members/kaduna-state-nigeria/" target="_blank" rel="noopener noreferrer" class="btn btn-blue">OpenGov Partnership</a>
+                <a href="https://nscfn.nationalplanning.gov.ng/fn-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="background-color: #12b8a6;">Nutrition Dashboard</a>
+            </div>
+
+            <!-- Hamburger Menu -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-bg hero-slider" id="heroSlider">
+                <div class="slide active">
+                    <img src="assets/images/hero/hero-budget.jpg" alt="Kaduna State Budget" loading="eager">
+                </div>
+                 <div class="slide">
+                    <img src="assets/images/hero/hero-img-1.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-2.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-planning.jpg" alt="Planning & Budget" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-2.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-3.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-development.jpg" alt="Kaduna State Development" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-1.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-2.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-3.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-4.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-5.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+                <div class="slide">
+                    <img src="assets/images/hero/hero-img-6.jpeg" alt="Kaduna State Planning" loading="lazy">
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container fade-up">
+                <div class="hero-content">
+                    <h1 class="hero-title">A world class and<br>dynamic Planning<br>and Budget Agency</h1>
+                    <p class="hero-subtitle">... creating a vibrant economy for improvement of the living standards of the people of Kaduna State.</p>
+                    <div class="hero-buttons-grid">
+                        <a href="https://play.google.com/store/apps/details?id=kaduna.citizen.feedback" target="_blank" rel="noopener noreferrer" class="btn hero-grid-btn" style="background-color: #143FA8; color: white;">Citizens Feedback App</a>
+                        <a href="https://www.opengovpartnership.org/members/kaduna-state-nigeria/" target="_blank" rel="noopener noreferrer" class="btn hero-grid-btn" style="background-color: #FF5A1F; color: white;">OpenGov Partnership</a>
+                        <a href="https://pbc.kdsg.gov.ng/download/2026-revenue-budget-template/" target="_blank" rel="noopener noreferrer" class="btn hero-grid-btn" style="background-color: #00FF55; color: white;">2027 Revenue Budget Template</a>
+                        <a href="https://nscfn.nationalplanning.gov.ng/fn-dashboard" target="_blank" rel="noopener noreferrer" class="btn hero-grid-btn" style="background-color: #00FFFF; color: white;">Nutrition Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="container fade-up">
+                <!-- Top History Section -->
+                <div class="history-grid">
+                    <div class="history-logo">
+                        <span class="welcome-text">WELCOME TO THE</span>
+                        <img src="assets/images/logo/logo-dark.png" alt="Kaduna State Planning & Budget Commission Logo" class="about-logo-img">
+                    </div>
+                    <div class="history-text">
+                        <p>The Commission had undergone several changes. It was a full-fledged Ministry under the former civilian regime of 1979-1980. It was later changed to the Directorate of Budget and Planning within the Ministry of Finance (MoF) under successive military administrations. Subsequently,</p>
+                        <p>it was upgraded to the Bureau of Budget and Planning and later became the Kaduna State Planning and Budget Commission by Law No. 2017. The Commission comprises five departments, two stand-alone units and two parastatals.</p>
+                    </div>
+                </div>
+
+                <!-- Cards Section -->
+                <div class="vmc-grid">
+                    <!-- Vision -->
+                    <div class="vmc-card light-card">
+                        <div class="vmc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 17c-4.5 0-8.5-4-8.5-4s4-4 8.5-4 8.5 4 8.5 4-4 4-8.5 4z" />
+                                <circle cx="12" cy="13" r="2.5" />
+                                <path d="M12 5v2" />
+                                <path d="M7 6.5l1.5 1.5" />
+                                <path d="M17 6.5l-1.5 1.5" />
+                                <path d="M12 19v2" />
+                                <path d="M7 19.5l1.5-1.5" />
+                                <path d="M17 19.5l-1.5-1.5" />
+                            </svg>
+                        </div>
+                        <h3>Vision</h3>
+                        <p>A world class and dynamic Planning and Budget Agency creating a vibrant economy for improvement of the living standards of the people of Kaduna State.</p>
+                    </div>
+
+                    <!-- Mission -->
+                    <div class="vmc-card dark-card">
+                        <div class="vmc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="10" cy="14" r="7" />
+                                <circle cx="10" cy="14" r="3.5" />
+                                <circle cx="10" cy="14" r="1" />
+                                <path d="M21 3l-10 10" />
+                                <path d="M21 3l-3 0M21 3l0 3" />
+                                <path d="M18 6l-2-2" />
+                            </svg>
+                        </div>
+                        <h3>Mission</h3>
+                        <p>To serve as an effective machinery for the formulation, coordination, monitoring and evaluation of Government economic policies, plans and budgets to enhance the socio-economic development of the state and its people using a competent and well-motivated workforce.</p>
+                    </div>
+
+                    <!-- Core Values -->
+                    <div class="vmc-card light-card">
+                        <div class="vmc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 10h16l-8 11z" />
+                                <path d="M7 5h10l3 5H4z" />
+                                <path d="M7 5l5 5 5-5" />
+                                <path d="M12 1v2" />
+                                <path d="M7 2.5l1.5 1.5" />
+                                <path d="M17 2.5l-1.5 1.5" />
+                            </svg>
+                        </div>
+                        <h3>Core Values</h3>
+                        <p>Dedication. Integrity. Team Work. Employee care and development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Governor Section -->
+        <section class="section governor bg-light-blue" id="governor">
+            <div class="container fade-up">
+                <div class="gov-grid">
+                    <div class="gov-content">
+                        <span class="gov-subtitle">SEN. UBA SANI</span>
+                        <h2 class="gov-title">Governor of Kaduna State</h2>
+                        <p class="gov-text">Senator Uba Sani is a Nigerian politician who is the Governor of Kaduna State whose tenure started in May 2023. He was previously the Senator representing Kaduna Central Senatorial District from 2019 to 2023. He had also served as a Senior Special Assistant to President Olusegun Obasanjo, a Special Adviser to the Minister of the FCT on Political Affairs, and a Special Adviser on Political Affairs and Intergovernmental Relations to Governor Nasir El-Rufai.</p>
+                        
+                        <h3 class="gov-priorities-title">Priorities ...</h3>
+                        <div class="gov-priorities-list">
+                            <ul class="priority-col">
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Safety and Security</li>
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Strengthen Institutions</li>
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Trade and Investment</li>
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Infrastructure</li>
+                            </ul>
+                            <ul class="priority-col">
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Human Capital Development</li>
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Nurture Citizens Engagement</li>
+                                <li><svg viewBox="0 0 24 24" fill="#FF5A1F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Agriculture</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="gov-image">
+                        <img src="assets/images/leadership/governor.jpg" alt="Sen. Uba Sani - Governor of Kaduna State" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commissioner Section -->
+        <section class="section commissioner" id="commissioner">
+            <div class="comm-bg-watermark">
+                <img src="assets/images/logo/logo-kdsg-watermark.png" alt="Watermark" class="watermark-logo">
+            </div>
+            <div class="container fade-up relative z-index-1">
+                <div class="comm-grid">
+                    <div class="comm-image-wrapper">
+                        <img src="assets/images/leadership/commissioner.png" alt="Hon. Mukhtar Ahmed Monrovia" class="comm-img" loading="lazy">
+                    </div>
+                    <div class="comm-content">
+                        <div class="comm-text-wrapper">
+                            <h2 class="comm-title">Building Tomorrow's<br>Kaduna Today</h2>
+                            <p class="comm-text">Welcome to the official website of the Kaduna State Planning and Budget Commission (KSPBC). As the state's premier institution for economic planning and fiscal management, we are committed to driving sustainable development through effective policy formulation and budget implementation.</p>
+                            <p class="comm-text">Our dedicated team works tirelessly to ensure optimal resource allocation for creating a lasting positive impact across all sectors of our economy. I invite you to explore our website and learn more about how we are working to create a vibrant economy and improve living standards for the people of Kaduna State.</p>
+                            <div class="comm-signature">
+                                <strong>Hon. Mukhtar Ahmed Monrovia</strong><br>
+                                <em>Honourable Commissioner</em><br>
+                                <span class="signature-light">Kaduna State Planning and Budget Commission</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PBC Services Section -->
+        <section class="section pbc-services" id="pbc-services">
+            <div class="pbc-services-bg">
+                <img src="assets/images/backgrounds/bg-services.jpeg" alt="PBC Services Background" loading="lazy">
+                <div class="pbc-overlay"></div>
+            </div>
+            <div class="container fade-up relative z-index-1">
+                <div class="pbc-header">
+                    <span class="pbc-subtitle">PBC SERVICES</span>
+                    <h2 class="pbc-title">Services offered by the<br>Commission</h2>
+                </div>
+                
+                <div class="pbc-services-grid">
+                    <!-- Left Column -->
+                    <div class="pbc-col">
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div class="pbc-text">Facilitate development of State and local government plans.</div>
+                        </div>
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                            </div>
+                            <div class="pbc-text">Prepare and implement annual State Budgets.</div>
+                        </div>
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                            </div>
+                            <div class="pbc-text">Coordinate development partners' support.</div>
+                        </div>
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="7 12 10 9 13 12 17 8"/><line x1="17" y1="8" x2="17" y2="10"/><line x1="17" y1="8" x2="15" y2="8"/></svg>
+                            </div>
+                            <div class="pbc-text">Monitor and Evaluate Government Projects and Programmes.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div class="pbc-col">
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l4 5-10 10L2 13z"/><path d="M12 23l4-10"/><path d="M12 23L8 13"/><path d="M2 13h20"/><path d="M6 8l2 5"/><path d="M18 8l-2 5"/><path d="M12 1v3M9 2.5l1.5 2M15 2.5l-1.5 2"/></svg>
+                            </div>
+                            <div class="pbc-text">Support and Coordinate the implementation of the Sustainable Development Goals (SDGs)</div>
+                        </div>
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><polyline points="3 14 6 10 12 14 18 6"/></svg>
+                            </div>
+                            <div class="pbc-text">Collect and Manage Data.</div>
+                        </div>
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="14" r="2"/><path d="M12 16v3M9 22h6"/></svg>
+                            </div>
+                            <div class="pbc-text">Support the implementation of the Social Safety Programme.</div>
+                        </div>
+                        <div class="pbc-item">
+                            <div class="pbc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"/><line x1="16" y1="8" x2="16" y2="8"/><line x1="16" y1="12" x2="16" y2="12"/><line x1="16" y1="16" x2="16" y2="16"/><circle cx="9" cy="10" r="3"/><path d="M13 17a4 4 0 0 0-8 0"/></svg>
+                            </div>
+                            <div class="pbc-text">Register all residents in the State.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources and Downloads Section -->
+        <section class="section resources-section" id="resources">
+            <div class="container fade-up">
+                <div class="resources-grid">
+                    <!-- Left Column -->
+                    <div class="res-content">
+                        <span class="res-subtitle">ACCESS OFFICIAL PLANNING AND BUDGET DOCUMENTS</span>
+                        <h2 class="res-title">Resources and<br>Downloads</h2>
+                        <p class="res-desc">Welcome to our comprehensive document repository where you can access essential planning and budget-related materials for Kaduna State. We've organized our documents into three main categories to help you find exactly what you need:</p>
+                        <hr class="res-divider">
+                        <p class="res-cta-text">Click below to access our download section</p>
+                        <a href="#" class="btn res-btn">Downloads</a>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div class="res-card-wrapper">
+                        <div class="res-card">
+                            <ul class="res-list">
+                                <li>
+                                    <div class="res-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                                    </div>
+                                    <div class="res-text">
+                                        <h4>Budget Documents</h4>
+                                        <p>Explore our collection of state budgets, including annual appropriation bills, budget implementation reports, and citizens' budgets. These documents provide detailed insights into the state's financial planning and resource allocation.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="res-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 22 7 12 2"/><rect x="4" y="9" width="4" height="9"/><rect x="16" y="9" width="4" height="9"/><rect x="10" y="9" width="4" height="9"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                                    </div>
+                                    <div class="res-text">
+                                        <h4>Policy Documents</h4>
+                                        <p>Access key policy frameworks, development plans, and strategic documents that guide our state's economic direction. This section includes medium-term sector strategies, economic blueprints, and planning guidelines.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="res-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                    </div>
+                                    <div class="res-text">
+                                        <h4>Report and Publications</h4>
+                                        <p>Find our periodic performance reports, economic reviews, statistical bulletins, and evaluation documents. These publications offer detailed analysis and updates on the state's economic progress and development initiatives.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="res-footer">
+                                <p>Browse through our categories and download the documents you need. For any additional information or support, please contact our help desk.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News and Articles Section -->
+        <section class="section news-articles-section" id="news">
+            <div class="container fade-up">
+                <div class="news-header">
+                    <span class="news-subtitle">UPDATES</span>
+                    <h2 class="news-title">News and Articles</h2>
+                </div>
+                
+                <div class="news-articles-grid">
+                    <!-- Article 1 -->
+                    <article class="news-article-card">
+                        <div class="na-img">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600&auto=format&fit=crop" alt="News Image" loading="lazy">
+                            <div class="na-avatar">
+                                <svg viewBox="0 0 24 24" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                        </div>
+                        <div class="na-content">
+                            <h3>KADPBC KICKSTARTS "KADUNA BUDGETFLOW" SYSTEM TO REVOLUTIONIZE PUBLIC FINANCIAL MANAGEMENT.</h3>
+                            <p>The Hon. Commissioner, Planning and Budget Commission (PBC), Mukhtar Ahmed chaired a project kickoff and technical presentation meeting held at...</p>
+                            <a href="#" class="na-read-more">READ MORE &raquo;</a>
+                        </div>
+                        <div class="na-footer">
+                            PBC Media &bull; July 12, 2024 &bull; No Comments
+                        </div>
+                    </article>
+                    
+                    <!-- Article 2 -->
+                    <article class="news-article-card">
+                        <div class="na-img">
+                            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=600&auto=format&fit=crop" alt="News Image" loading="lazy">
+                            <div class="na-avatar">
+                                <svg viewBox="0 0 24 24" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                        </div>
+                        <div class="na-content">
+                            <h3>KADPBC Partners with UNICEF for Quarterly Review to Strengthen Nutrition Coordination Across 23 Kaduna LGAs.</h3>
+                            <p>As part of its sustained campaign to eradicate malnutrition, the Kaduna State Planning and Budget Commission (KADPBC), with support from...</p>
+                            <a href="#" class="na-read-more">READ MORE &raquo;</a>
+                        </div>
+                        <div class="na-footer">
+                            PBC Media &bull; July 2, 2024 &bull; No Comments
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="news-article-card">
+                        <div class="na-img">
+                            <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=600&auto=format&fit=crop" alt="News Image" loading="lazy">
+                            <div class="na-avatar">
+                                <svg viewBox="0 0 24 24" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                        </div>
+                        <div class="na-content">
+                            <h3>KDSG STRENGTHENS OVERSIGHT ON DONOR-FUNDED PROJECTS TO ENSURE ACCOUNTABILITY AND CITIZEN IMPACT. KADUNA STATE FINALIZES RIGOROUS OPERATIONAL FRAMEWORK FOR NG-CARES 2.0 ROLLOUT</h3>
+                            <p>The Kaduna State Government, through the Planning and Budget Commission (KADPBC), has hosted the State Steering Committee Meeting on Donor-Funded...</p>
+                            <a href="#" class="na-read-more">READ MORE &raquo;</a>
+                        </div>
+                        <div class="na-footer">
+                            PBC Media &bull; June 29, 2024 &bull; No Comments
+                        </div>
+                    </article>
+                    
+                    <!-- Article 4 -->
+                    <article class="news-article-card">
+                        <div class="na-img">
+                            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop" alt="News Image" loading="lazy">
+                            <div class="na-avatar">
+                                <svg viewBox="0 0 24 24" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                        </div>
+                        <div class="na-content">
+                            <h3>COMMUNIQUÉ ISSUED AT THE END OF THE HIGH-LEVEL DIALOGUE WITH LOCAL GOVERNMENT AREA (LGA) COUNCIL CHAIRMEN ON NUTRITION FINANCING IN KADUNA STATE HELD AT BAFRA HOTEL, KADUNA.</h3>
+                            <p>DATE: 06 JUNE, 2024 1. PREAMBLE A one-day High-Level Dialogue on Local Government Nutrition Financing was convened at Bafra Hotel...</p>
+                            <a href="#" class="na-read-more">READ MORE &raquo;</a>
+                        </div>
+                        <div class="na-footer">
+                            PBC Media &bull; June 29, 2024 &bull; No Comments
+                        </div>
+                    </article>
+                    
+                    <!-- Article 5 -->
+                    <article class="news-article-card">
+                        <div class="na-img">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&auto=format&fit=crop" alt="News Image" loading="lazy">
+                            <div class="na-avatar">
+                                <svg viewBox="0 0 24 24" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                        </div>
+                        <div class="na-content">
+                            <h3>KADPBC HOSTS CROSS RIVER STATE REVENUE DELEGATION ON BENCHMARKING STUDY TOUR</h3>
+                            <p>The Permanent Secretary, Planning and Budget Commission (KADPBC), Mukhtar Abdullah, alongside the Commission's management team, officially welcomed a delegation from...</p>
+                            <a href="#" class="na-read-more">READ MORE &raquo;</a>
+                        </div>
+                        <div class="na-footer">
+                            PBC Media &bull; June 29, 2024 &bull; No Comments
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="news-article-card">
+                        <div class="na-img">
+                            <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=600&auto=format&fit=crop" alt="News Image" loading="lazy">
+                            <div class="na-avatar">
+                                <svg viewBox="0 0 24 24" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                            </div>
+                        </div>
+                        <div class="na-content">
+                            <h3>KDSG Hosts High-Level Stakeholders Engagement on Public Expenditure and Financial Accountability (PEFA)</h3>
+                            <p>The Kaduna State Government through the Planning and Budget Commission has convened a high-level stakeholders' meeting to brief key participants...</p>
+                            <a href="#" class="na-read-more">READ MORE &raquo;</a>
+                        </div>
+                        <div class="na-footer">
+                            PBC Media &bull; June 29, 2024 &bull; No Comments
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="news-button-wrap">
+                    <a href="#" class="btn btn-discover-more">Discover More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section class="section social-media-section" id="social-media">
+            <div class="container fade-up text-center">
+                <span class="social-subtitle">FEEDS FROM THE</span>
+                <h2 class="social-title">Social Media</h2>
+                <p class="social-handle">Handle KADPBC</p>
+                <div class="social-feed-placeholder">
+                    <!-- Social feed widget goes here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="section partners-section" id="partners">
+            <div class="container fade-up">
+                <div class="partners-header">
+                    <span class="partners-subtitle">DEVELOPMENT</span>
+                    <h2 class="partners-title">Partners</h2>
+                </div>
+                <div class="partners-marquee-wrapper">
+                    <div class="partners-marquee-content">
+                        <!-- Set 1 -->
+                        <div class="partner-logo"><img src="assets/images/partners/partner-unicef.png" alt="UNICEF"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-unfpa.png" alt="UNFPA"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-gates-foundation.png" alt="Bill & Melinda Gates Foundation"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-world-bank.png" alt="The World Bank"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-dfid.jpg" alt="DFID"></div>
+                        <!-- Set 2 for seamless scrolling -->
+                        <div class="partner-logo"><img src="assets/images/partners/partner-unicef.png" alt="UNICEF"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-unfpa.png" alt="UNFPA"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-gates-foundation.png" alt="Bill & Melinda Gates Foundation"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-world-bank.png" alt="The World Bank"></div>
+                        <div class="partner-logo"><img src="assets/images/partners/partner-dfid.jpg" alt="DFID"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-col-about">
+                    <img src="assets/images/logo/logo-white.png" alt="Kaduna State Planning & Budget Commission" class="footer-logo-img">
+                    <p class="footer-desc">A world class and dynamic Planning and Budget Agency creating a vibrant economy for improvement of the living standards of the people of Kaduna State.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" stroke="none" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col-links">
+                    <h4 class="footer-heading">Who we are</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Our History</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">State Parties</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col-newsletter">
+                    <h4 class="footer-heading">Suscribe Newsletter</h4>
+                    <p class="newsletter-desc">Get free update right in your inbox, along with thousand others.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="input-group">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit" class="btn btn-blue">SIGN UP</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Copyright&copy; <span id="currentYear">2026</span> Planning & Budget Commission, Kaduna State. All rights reserved.</p>
+                <p class="dev-credit">Dev. by Mikro Tech Ltd. in Collaboration with KDSG Digital Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/utilities.js"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+ 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+ 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+ 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+ 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+<script src="assets/js/navigation.js"></script>
+    <script src="assets/js/dropdown.js"></script>
+    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/counters.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
