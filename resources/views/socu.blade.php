@@ -1,281 +1,425 @@
 @extends('layouts.frontend')
 
-@section('title', 'Socu | Planning & Budget Commission')
+@section('title', 'State Operations Coordinating Unit (SOCU) | Planning & Budget Commission')
 
 @section('content')
-<!-- Page Hero -->
-        <section class="page-hero"
-            style="background-image: linear-gradient(to right, rgba(4, 31, 86, 0.98), rgba(4, 31, 86, 0.6)), url('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg'); background-size: cover; background-position: center; padding: 10rem 0 8rem; color: white;">
-            <div class="container">
-                <div class="breadcrumbs"
-                    style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 700; margin-bottom: 2rem; color: white; text-transform: uppercase; letter-spacing: 0.05em;">
-                    <a href="index.html" style="color: white; text-decoration: none;">HOME</a>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <a href="#" style="color: white; text-decoration: none;">GOVERNANCE</a>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <span style="color: white;">UNITS</span>
-                </div>
-                <h1
-                    style="font-size: 2.5rem; font-weight: 800; color: white; margin: 0; line-height: 1.15; letter-spacing: -0.02em;">
-                    State Operation and<br>Coordination Unit (SOCU)</h1>
-            </div>
-        </section>
 
-        <!-- About Department -->
-        <section class="section about-bureau" style="padding: 6rem 0;">
-            <div class="container">
-                <div class="about-bureau-grid"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                    <div class="about-bureau-content">
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 1.5rem; letter-spacing: -0.02em;">
-                            About the Unit</h2>
-                        <p style="margin-bottom: 2rem; color: var(--gray-600); line-height: 1.7; font-size: 0.95rem;">
-                            The unit was created in 2016 to implement the FGN program of Identification of the Poor and Vulnerable in communities and population of the State Single Register (SSR). By design of the whole program nationwide, SOCU is situated in the Planning and Budget Commission though staff are drawn from various MDAs within the Civil Service.
-                        </p>
-                    </div>
-                    <div class="about-bureau-image">
-                        <img src="{{ asset('assets/images/backgrounds/kd8.jpg') }}"
-                            alt="Government Building" style="width: 100%; height: auto; display: block;">
-                    </div>
+<style>
+    :root {
+        --so-primary: #041F56;
+        --so-primary-light: #0B3485;
+        --so-accent: #FF5A1F;
+        --so-accent-hover: #E04810;
+        --so-text-dark: #0F172A;
+        --so-text-muted: #64748B;
+        --so-bg-light: #F8FAFC;
+        --so-border: #E2E8F0;
+        --so-radius: 16px;
+    }
+
+    /* Hero Section */
+    .so-hero {
+        position: relative;
+        background: linear-gradient(135deg, #021235 0%, #041F56 50%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 9rem 0 5rem;
+        overflow: hidden;
+    }
+
+    .so-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .so-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.18;
+        filter: blur(3px);
+    }
+
+    .so-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 70% 30%, rgba(255, 90, 31, 0.15) 0%, transparent 60%);
+    }
+
+    .so-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .so-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 0.5rem 1.25rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        margin-bottom: 2rem;
+    }
+
+    .so-breadcrumb a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .so-breadcrumb a:hover {
+        color: var(--so-accent);
+    }
+
+    .so-breadcrumb-sep {
+        color: var(--so-accent);
+    }
+
+    .so-title {
+        color: #FFFFFF;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .so-title { font-size: 3.5rem; }
+    }
+
+    .so-subtitle {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 700px;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* About Section */
+    .so-main-section {
+        background-color: #FFFFFF;
+        padding: 5rem 0;
+    }
+
+    .so-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .so-about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+        align-items: center;
+        margin-bottom: 4rem;
+    }
+
+    @media (min-width: 992px) {
+        .so-about-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .so-section-tag {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--so-accent);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .so-section-heading {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--so-text-dark);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .so-about-text {
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        color: var(--so-text-muted);
+        margin-bottom: 1.5rem;
+    }
+
+    .so-image-wrap {
+        border-radius: var(--so-radius);
+        overflow: hidden;
+        box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.15);
+        border: 1px solid var(--so-border);
+    }
+
+    .so-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* NSIPs Programs Cards */
+    .so-nsip-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+        .so-nsip-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .so-nsip-card {
+        background: var(--so-bg-light);
+        border: 1px solid var(--so-border);
+        border-radius: 14px;
+        padding: 1.75rem;
+    }
+
+    .so-nsip-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--so-text-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .so-nsip-desc {
+        font-size: 0.9375rem;
+        color: var(--so-text-muted);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Navy Section: Mandate & Structure */
+    .so-navy-section {
+        background: linear-gradient(135deg, #021235 0%, #041F56 60%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 5rem 0;
+    }
+
+    .so-navy-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    @media (min-width: 992px) {
+        .so-navy-grid {
+            grid-template-columns: 340px 1fr;
+        }
+    }
+
+    .so-navy-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: #FFFFFF;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .so-func-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--so-radius);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .so-func-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .so-func-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .so-func-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--so-accent);
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .so-func-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin: 0;
+    }
+
+    .so-func-list {
+        margin: 0;
+        padding-left: 1.5rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+    }
+
+    .so-func-list li {
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="so-hero">
+    <div class="so-hero-bg">
+        <img src="{{ asset('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg') }}" alt="SOCU Background">
+    </div>
+    <div class="so-hero-overlay"></div>
+
+    <div class="so-hero-content">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb">
+            <div class="so-breadcrumb">
+                <a href="{{ url('/') }}">Home</a>
+                <span class="so-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <a href="{{ url('departments') }}">Departments & Units</a>
+                <span class="so-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <span style="color: #FFFFFF;">SOCU Unit</span>
+            </div>
+        </nav>
+
+        <h1 class="so-title">State Operations Coordinating Unit (SOCU)</h1>
+        <p class="so-subtitle">Establishing, managing, and updating the State Single Register (SSR) of Poor & Vulnerable Households for targeted social interventions.</p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="so-main-section">
+    <div class="so-container">
+        <div class="so-about-grid">
+            <div>
+                <span class="so-section-tag">SOCIAL INVESTMENT SECRETARIAT</span>
+                <h2 class="so-section-heading">About the Unit</h2>
+                <p class="so-about-text">
+                    Established in 2016, SOCU generates, maintains, and updates the State Single Register (SSR) of Poor and Vulnerable Households in Kaduna State using Community-Based Targeting (CBT) methodology.
+                </p>
+                <p class="so-about-text">
+                    Domiciled within the Planning and Budget Commission, SOCU serves as the operational Secretariat for the State Focal Person (SFP) on Social Investment Programs (NSIPs), linking National and State social welfare interventions.
+                </p>
+            </div>
+
+            <div class="so-image-wrap">
+                <img src="{{ asset('assets/images/backgrounds/kd8.jpg') }}" alt="SOCU Field Operations">
+            </div>
+        </div>
+
+        <!-- NSIP Programs Coordination Grid -->
+        <span class="so-section-tag">PORTFOLIO COORDINATION</span>
+        <h2 class="so-section-heading">National Social Investment Programs (NSIPs)</h2>
+
+        <div class="so-nsip-grid">
+            <div class="so-nsip-card">
+                <h3 class="so-nsip-title">State Single Register (SSR)</h3>
+                <p class="so-nsip-desc">Community-Based Targeting process identifying poor and vulnerable households across all 23 LGAs in Kaduna State.</p>
+            </div>
+
+            <div class="so-nsip-card">
+                <h3 class="so-nsip-title">N-Power Program</h3>
+                <p class="so-nsip-desc">Youth empowerment & skill acquisition program coordinated by SOCU at the Planning and Budget Commission.</p>
+            </div>
+
+            <div class="so-nsip-card">
+                <h3 class="so-nsip-title">Conditional Cash Transfer (CCT)</h3>
+                <p class="so-nsip-desc">Direct bi-monthly cash disbursements to verified households on the SSR, managed via the State Cash Transfer Unit (SCTU).</p>
+            </div>
+
+            <div class="so-nsip-card">
+                <h3 class="so-nsip-title">Home Grown School Feeding (NHGSFP)</h3>
+                <p class="so-nsip-desc">Primary school nutrition program providing daily meals to Primary 1-3 pupils in public schools across Kaduna State.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mandate & Structure Navy Section -->
+<section class="so-navy-section">
+    <div class="so-container">
+        <div class="so-navy-grid">
+            
+            <div>
+                <span style="font-size: 0.8125rem; font-weight: 700; color: var(--so-accent); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.5rem;">CORE MANDATE</span>
+                <h2 class="so-navy-title">SOCU Operational Scope</h2>
+                <div class="so-image-wrap" style="margin-top: 2rem;">
+                    <img src="{{ asset('assets/images/backgrounds/17254835_img20230520080414_jpeg41c4aa4a16958bbf96b85f9269a896b3.jpeg') }}" alt="Social Investment Engagement">
                 </div>
             </div>
-        </section>
 
-        <!-- Mandate Section -->
-        <section class="section kdbs-strategic" style="background-color: #041f56; color: white; padding: 5rem 0;">
-            <div class="container">
-                <div class="strategic-grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center;">
-                    <!-- Left Column -->
-                    <div class="strategic-left">
-                        <img src="{{ asset('assets/images/backgrounds/business-8174708_640.jpg') }}" alt="Boardroom"
-                            style="width: 100%; display: block; margin-bottom: 1.5rem;">
-                        <hr style="width: 60px; border: 1px solid #FF6B00; margin: 0; padding: 0;">
-                    </div>
-                    
-                    <!-- Right Column -->
-                    <div class="strategic-right">
-                        <div class="strategic-block">
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.25rem;">
-                                <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: white; line-height: 1.4;">Mandate of SOCU</h4>
-                            </div>
-                            <ul style="padding-left: 2.2rem; list-style-type: disc; margin: 0; line-height: 1.6; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.8rem;">To Generate, Maintain and Update the State Single Register of Poor and Vulnerable Households necessary for planning.</li>
-                                <li style="margin-bottom: 0.8rem;">Kaduna SOCU has a wider mandate by virtue of the fact that the State Focal Person (SFP) is the Commissioner Planning and Budget, the Unit doubles as the secretariat for the State Focal Person (SFP) on Social Investment Programs (SIPs); meaning the Unit links up with the other programmes primarily for reports and represent the SFP where necessary.</li>
-                            </ul>
+            <div>
+                <div class="so-func-card">
+                    <div class="so-func-head">
+                        <div class="so-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         </div>
+                        <h3 class="so-func-title">Key Responsibilities</h3>
                     </div>
+                    <ul class="so-func-list">
+                        <li>Generate, maintain, and update the State Single Register (SSR) of Poor and Vulnerable Households.</li>
+                        <li>Monitor daily program implementation and manage beneficiary grievance redress systems.</li>
+                        <li>Prepare weekly, monthly, and quarterly implementation reports for State and Federal authorities.</li>
+                        <li>Maintain data entry, quality control, and data protection protocols for all beneficiary records.</li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- NSIPs Section -->
-        <section class="section about-nsips" style="padding: 6rem 0;">
-            <div class="container">
-                <div class="nsips-grid"
-                    style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
-                    <div class="nsips-content">
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 1.5rem; letter-spacing: -0.02em; line-height: 1.2;">
-                            SOCU & The National Social Investment<br>Programmes (NSIPs)</h2>
-                        <p style="margin-bottom: 2rem; color: var(--gray-600); line-height: 1.7; font-size: 0.95rem;">
-                            The National Social Investment Programs is a portfolio of Programs created in 2015 and launched in 2016 by the FGN to deliver socio-economic support to disadvantaged Nigerians across the Nation. In other words, NSIPs was created to overcome the failings of the past and to enshrine the values and vision of the current administration for graduating its citizens from poverty through capacity building, investment and direct support. The National Social Investment Office (NSIO) designed a holistic approach for delivering the Social Investment Portfolio by embarking on the following:
-                        </p>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <!-- List Column 1 -->
-                            <div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span style="font-size: 0.95rem; color: var(--gray-600);">Sharing Resources and lessons learnt for Continuous Improvement</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span style="font-size: 0.95rem; color: var(--gray-600);">Central Coordination</span>
-                                </div>
-                            </div>
-                            <!-- List Column 2 -->
-                            <div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span style="font-size: 0.95rem; color: var(--gray-600);">Partnering with States and LGAs</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span style="font-size: 0.95rem; color: var(--gray-600);">Leveraging Existing Capacity within MDAs</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span style="font-size: 0.95rem; color: var(--gray-600);">Digital First</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nsips-image">
-                        <img src="{{ asset('assets/images/backgrounds/17254835_img20230520080414_jpeg41c4aa4a16958bbf96b85f9269a896b3.jpeg') }}"
-                            alt="Bill Gates and Officials" style="width: 100%; height: auto; display: block;">
-                    </div>
-                </div>
+        </div>
+    </div>
+</section>
+
+<!-- Development Partners Section -->
+<section class="section partners-section" id="partners">
+    <div class="container fade-up">
+        <div class="partners-header">
+            <span class="partners-subtitle">DEVELOPMENT</span>
+            <h2 class="partners-title">Partners</h2>
+        </div>
+        <div class="partners-marquee-wrapper">
+            <div class="partners-marquee-content">
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}" alt="Bill & Melinda Gates Foundation"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}" alt="The World Bank"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
+                <!-- Duplicate set for marquee loop -->
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}" alt="Bill & Melinda Gates Foundation"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}" alt="The World Bank"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- Structure Section -->
-        <section class="section structure-section" style="background-color: #f5f8fc; padding: 5rem 0;">
-            <div class="container">
-                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;">
-                    <!-- Left Image and Title -->
-                    <div>
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 1.5rem; letter-spacing: -0.02em;">
-                            Structure</h2>
-                        <img src="{{ asset('assets/images/backgrounds/GZMrBdOXsAEq7Mq-768x1024.jpeg') }}"
-                            alt="Aerial view" style="width: 100%; height: auto; display: block;">
-                    </div>
-                    
-                    <!-- Right Content -->
-                    <div style="color: var(--gray-600); font-size: 0.9rem; line-height: 1.6;">
-                        <p style="margin-bottom: 2rem;">
-                            States are expected to form structures in order to efficiently coordinate and implement the programs. It is expected that each State Government appoints a State Focal Person who links up with each program to effectively brief His Excellency and the FGN on the happenings. The Kaduna State Focal Person is the State Coordinator, State Operations Coordinating Unit. Every state has its own arrangement on the coordination of the NSIPs. In Kaduna the arrangement is as follows:
-                        </p>
-                        
-                        <!-- List Two Columns -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                            <!-- Col 1 -->
-                            <div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Population of the State Single Register (SSR) coordinated by the State Operations Coordinating Unit domiciled in the Planning and Budget Commission. Process of identification uses the Community Based Targeting Process.</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>The Need for Power (N-Power) Program; Coordinated by SOCU and domiciled at Planning and Budget Commission, Kaduna. Enrolment is through on-line application.</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Government Enterprise Empowerment Program (GEEP) Coordinated by Poultry Association of Nigeria, Kaduna State chapter, Yakubu Gowon Way. Enrolment is done through Cooperatives.</span>
-                                </div>
-                            </div>
-                            <!-- Col 2 -->
-                            <div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>National Home Grown School Feeding Program; Coordinated by Ministry of Education, Science & Technology (MOEST.) Program Manager in the Ministry of Education, Science & Technology Food vendors apply to the Ministry of Education, Science & Technology. Feeding is for Primary 1-3 Pupils.</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Conditional Cash Transfer (CCT) Coordinated by the State Cash Transfer Unit (SCTU domiciled at Ministry of Rural & Community Development). The SCTU use data from the SSR for intervention.</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div style="border-top: 1px solid #e2e8f0; margin-bottom: 2rem;"></div>
-                        
-                        <!-- Bottom Info -->
-                        <p style="margin-bottom: 1.5rem;">
-                            The Unit work closely with MDAs/LGAs in charge of each program or component to:
-                        </p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                            <!-- Col 1 -->
-                            <div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Monitor daily implementation of the program.</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Manage information on beneficiaries of assigned program.</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Tackle grievances of beneficiaries.</span>
-                                </div>
-                            </div>
-                            <!-- Col 2 -->
-                            <div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Prepare daily, weekly, monthly and quarterly reports on implementation of each program.</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="icon-circle" style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </div>
-                                    <span>Responsible for data entry, quality assurance, management and protocol of beneficiaries of assigned program.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partners Section -->
-        <section class="section partners-section" id="partners">
-            <div class="container fade-up">
-                <div class="partners-header">
-                    <span class="partners-subtitle">DEVELOPMENT</span>
-                    <h2 class="partners-title">Partners</h2>
-                </div>
-                <div class="partners-marquee-wrapper">
-                    <div class="partners-marquee-content">
-                        <!-- Set 1 -->
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF">
-                        </div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}"
-                                alt="Bill & Melinda Gates Foundation"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}"
-                                alt="The World Bank"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
-                        <!-- Set 2 for seamless scrolling -->
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF">
-                        </div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}"
-                                alt="Bill & Melinda Gates Foundation"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}"
-                                alt="The World Bank"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
 @endsection

@@ -1,130 +1,238 @@
 @extends('layouts.frontend')
 
-@section('title', 'Downloads | Planning & Budget Commission')
+@section('title', 'Downloads & Resource Repository | Planning & Budget Commission')
 
 @section('content')
-    <!-- Page Hero -->
-    <section class="page-hero"
-        style="background-image: linear-gradient(to right, rgba(4, 31, 86, 0.98), rgba(4, 31, 86, 0.6)), url('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg'); background-size: cover; background-position: center; padding: 10rem 0 8rem; color: white;">
-        <div class="container">
-            <div class="breadcrumbs"
-                style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 700; margin-bottom: 2rem; color: white; text-transform: uppercase; letter-spacing: 0.05em;">
-                <a href="index.html" style="color: white; text-decoration: none;">HOME</a>
-                <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-                <span style="color: white;">DOWNLOADS</span>
+
+<style>
+    :root {
+        --dl-primary: #041F56;
+        --dl-primary-light: #0B3485;
+        --dl-accent: #FF5A1F;
+        --dl-accent-hover: #E04810;
+        --dl-text-dark: #0F172A;
+        --dl-text-muted: #64748B;
+        --dl-bg-light: #F8FAFC;
+        --dl-border: #E2E8F0;
+        --dl-radius: 16px;
+    }
+
+    /* Hero Section */
+    .dl-hero {
+        position: relative;
+        background: linear-gradient(135deg, #021235 0%, #041F56 50%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 9rem 0 5rem;
+        overflow: hidden;
+    }
+
+    .dl-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .dl-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.18;
+        filter: blur(3px);
+    }
+
+    .dl-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 70% 30%, rgba(255, 90, 31, 0.12) 0%, transparent 60%);
+    }
+
+    .dl-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .dl-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 0.5rem 1.25rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        margin-bottom: 2rem;
+    }
+
+    .dl-breadcrumb a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .dl-breadcrumb a:hover {
+        color: var(--dl-accent);
+    }
+
+    .dl-breadcrumb-sep {
+        color: var(--dl-accent);
+    }
+
+    .dl-title {
+        color: #FFFFFF;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .dl-title { font-size: 3.5rem; }
+    }
+
+    .dl-subtitle {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 650px;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Resources Category Overview */
+    .dl-overview-section {
+        background-color: #FFFFFF;
+        padding: 5rem 0 3rem;
+    }
+
+    .dl-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .dl-overview-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .dl-overview-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .dl-cat-card {
+        background: var(--dl-bg-light);
+        border: 1px solid var(--dl-border);
+        border-radius: var(--dl-radius);
+        padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .dl-cat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 25px -10px rgba(15, 23, 42, 0.08);
+        border-color: rgba(4, 31, 86, 0.15);
+    }
+
+    .dl-cat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--dl-primary) 0%, var(--dl-primary-light) 100%);
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 6px 16px rgba(4, 31, 86, 0.25);
+    }
+
+    .dl-cat-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--dl-text-dark);
+        margin-bottom: 0.75rem;
+    }
+
+    .dl-cat-desc {
+        font-size: 0.9375rem;
+        color: var(--dl-text-muted);
+        line-height: 1.6;
+        margin: 0;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="dl-hero">
+    <div class="dl-hero-bg">
+        <img src="{{ asset('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg') }}" alt="Downloads Banner Background">
+    </div>
+    <div class="dl-hero-overlay"></div>
+
+    <div class="dl-hero-content">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb">
+            <div class="dl-breadcrumb">
+                <a href="{{ url('/') }}">Home</a>
+                <span class="dl-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <span style="color: #FFFFFF;">Downloads Repository</span>
             </div>
-            <h1
-                style="font-size: 3rem; font-weight: 800; color: white; margin: 0; line-height: 1.15; letter-spacing: -0.02em;">
-                Downloads</h1>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Resources Section -->
-    <section class="section" style="background-color: #fafbfd; padding: 6rem 0;">
-        <div class="container">
-            <div class="downloads-container">
-                <!-- Left Side -->
-                <div>
-                    <span
-                        style="font-size: 0.75rem; font-weight: 700; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; display: block;">
-                        ACCESS OFFICIAL PLANNING AND BUDGET DOCUMENTS
-                    </span>
-                    <h2
-                        style="font-size: 2.2rem; font-weight: 800; color: #041f56; margin-bottom: 2rem; letter-spacing: -0.02em; line-height: 1.2;">
-                        Resources and<br>Downloads
-                    </h2>
-                    <img src="{{ asset('assets/images/backgrounds/kd_documents.jpg') }}" alt="Stack of Books"
-                        style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 2rem; display: block;">
-                    <p style="color: var(--gray-600); font-size: 0.95rem; line-height: 1.7;">
-                        Welcome to our comprehensive document repository where you can access essential planning and
-                        budget-related materials for Kaduna State. We've organized our documents into three main categories
-                        to help you find exactly what you need:
-                    </p>
+        <h1 class="dl-title">Document Repository</h1>
+        <p class="dl-subtitle">Access public financial frameworks, state budget publications, policy guidelines, and statistical reports issued by Kaduna State.</p>
+    </div>
+</section>
+
+<!-- Overview Cards -->
+<section class="dl-overview-section">
+    <div class="dl-container">
+        <div class="dl-overview-grid">
+            
+            <!-- Category 1 -->
+            <div class="dl-cat-card">
+                <div class="dl-cat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
                 </div>
-
-                <!-- Right Side: Card -->
-                <div class="resource-card">
-                    <!-- Item 1 -->
-                    <div class="resource-item">
-                        <div class="resource-icon">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700; color: #041f56;">Budget
-                                Documents</h4>
-                            <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem; line-height: 1.6;">
-                                Explore our collection of state budgets, including annual appropriation bills, budget
-                                implementation reports, and citizens' budgets. These documents provide detailed insights
-                                into the state's financial planning and resource allocation.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="resource-item">
-                        <div class="resource-icon">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                                <path d="M9 22v-4h6v4"></path>
-                                <path d="M8 6h.01"></path>
-                                <path d="M16 6h.01"></path>
-                                <path d="M12 6h.01"></path>
-                                <path d="M12 10h.01"></path>
-                                <path d="M12 14h.01"></path>
-                                <path d="M16 10h.01"></path>
-                                <path d="M16 14h.01"></path>
-                                <path d="M8 10h.01"></path>
-                                <path d="M8 14h.01"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700; color: #041f56;">Policy
-                                Documents</h4>
-                            <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem; line-height: 1.6;">
-                                Access key policy frameworks, development plans, and strategic documents that guide our
-                                state's economic direction. This section includes medium-term sector strategies, economic
-                                blueprints, and planning guidelines.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="resource-item">
-                        <div class="resource-icon">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700; color: #041f56;">Report
-                                and Publications</h4>
-                            <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem; line-height: 1.6;">
-                                Find our periodic performance reports, economic reviews, statistical bulletins, and
-                                evaluation documents. These publications offer detailed analysis and updates on the state's
-                                economic progress and development initiatives.
-                            </p>
-                        </div>
-                    </div>
-
-                    <p style="margin: 2.5rem 0 0 0; color: var(--gray-400); font-size: 0.85rem; line-height: 1.6;">
-                        Browse through our categories and download the documents you need. For any additional information or
-                        support, please contact our help desk.
-                    </p>
-                </div>
+                <h3 class="dl-cat-title">Budget Documents</h3>
+                <p class="dl-cat-desc">Annual state budget bills, implementation statements, revenue projections, and simplified citizens' budget breakdowns.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Document Grid Section -->
-    @livewire('frontend.downloads')
+            <!-- Category 2 -->
+            <div class="dl-cat-card">
+                <div class="dl-cat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path></svg>
+                </div>
+                <h3 class="dl-cat-title">Policy Frameworks</h3>
+                <p class="dl-cat-desc">Medium-Term Sector Strategies (MTSS), state development blueprints, and strategic planning guidelines.</p>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="dl-cat-card">
+                <div class="dl-cat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <h3 class="dl-cat-title">Reports & Reviews</h3>
+                <p class="dl-cat-desc">Performance evaluation bulletins, statistical reviews, economic indicators, and official commission reports.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Livewire Document Search & Downloads Component -->
+@livewire('frontend.downloads')
+
 @endsection

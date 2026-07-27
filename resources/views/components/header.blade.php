@@ -34,7 +34,7 @@
                       </ul>
                   </li>
                   <li class="nav-item dropdown">
-                      <a href="#parastatals" class="nav-link dropdown-toggle {{ request()->is('bureau') || request()->is('agency') ? 'active' : '' }}" aria-expanded="false">Parastatals 
+                      <a href="{{ url('departments') }}#parastatals" class="nav-link dropdown-toggle {{ request()->is('bureau') || request()->is('agency') ? 'active' : '' }}" aria-expanded="false">Parastatals 
 <svg class="dropdown-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
                       <ul class="dropdown-menu">
                           <li><a href="{{ url('bureau') }}" class="dropdown-link {{ request()->is('bureau') ? 'active' : '' }}">Bureau of Statistics</a></li>
@@ -50,7 +50,7 @@
         <!-- Header Actions -->
         <div class="header-actions">
             <a href="https://www.opengovpartnership.org/members/kaduna-state-nigeria/" target="_blank" rel="noopener noreferrer" class="btn btn-blue">OpenGov Partnership</a>
-            <a href="https://nscfn.nationalplanning.gov.ng/fn-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="background-color: #12b8a6;">Nutrition Dashboard</a>
+            <a href="https://nscfn.nationalplanning.gov.ng/fn-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="background-color: #FF5A1F;">Nutrition Dashboard</a>
         </div>
 
         <!-- Hamburger Menu -->

@@ -1,321 +1,603 @@
 @extends('layouts.frontend')
 
-@section('title', 'Bureau | Planning & Budget Commission')
+@section('title', 'Kaduna State Bureau of Statistics | Parastatal')
 
 @section('content')
-<!-- Page Hero -->
-        <section class="page-hero"
-            style="background-image: linear-gradient(to right, rgba(4, 31, 86, 0.98), rgba(4, 31, 86, 0.6)), url('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg'); background-size: cover; background-position: center; padding: 10rem 0 8rem; color: white;">
-            <div class="container">
-                <div class="breadcrumbs"
-                    style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 700; margin-bottom: 2rem; color: white; text-transform: uppercase; letter-spacing: 0.05em;">
-                    <a href="index.html" style="color: white; text-decoration: none;">HOME</a>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <a href="#" style="color: white; text-decoration: none;">GOVERNANCE</a>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <span style="color: white;">PARASTATALS</span>
-                </div>
-                <h1
-                    style="font-size: 3.5rem; font-weight: 800; color: white; margin: 0; line-height: 1.15; letter-spacing: -0.02em;">
-                    Kaduna State Bureau of<br>Statistics</h1>
+
+<style>
+    :root {
+        --kd-primary: #041F56;
+        --kd-primary-light: #0B3485;
+        --kd-accent: #FF5A1F;
+        --kd-accent-hover: #E04810;
+        --kd-text-dark: #0F172A;
+        --kd-text-muted: #64748B;
+        --kd-bg-light: #F8FAFC;
+        --kd-border: #E2E8F0;
+        --kd-radius: 16px;
+    }
+
+    /* Hero Section */
+    .kd-hero {
+        position: relative;
+        background: linear-gradient(135deg, #021235 0%, #041F56 50%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 9rem 0 5rem;
+        overflow: hidden;
+    }
+
+    .kd-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .kd-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.18;
+        filter: blur(3px);
+    }
+
+    .kd-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 70% 30%, rgba(255, 90, 31, 0.15) 0%, transparent 60%);
+    }
+
+    .kd-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .kd-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 0.5rem 1.25rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        margin-bottom: 2rem;
+    }
+
+    .kd-breadcrumb a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .kd-breadcrumb a:hover {
+        color: var(--kd-accent);
+    }
+
+    .kd-breadcrumb-sep {
+        color: var(--kd-accent);
+    }
+
+    .kd-title {
+        color: #FFFFFF;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .kd-title { font-size: 3.5rem; }
+    }
+
+    .kd-subtitle {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 700px;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Main Section */
+    .kd-main-section {
+        background-color: #FFFFFF;
+        padding: 5rem 0;
+    }
+
+    .kd-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .kd-about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+        align-items: center;
+        margin-bottom: 5rem;
+    }
+
+    @media (min-width: 992px) {
+        .kd-about-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .kd-section-tag {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--kd-accent);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .kd-section-heading {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--kd-text-dark);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .kd-about-text {
+        font-size: 1.0625rem;
+        line-height: 1.75;
+        color: var(--kd-text-muted);
+        margin-bottom: 2rem;
+    }
+
+    .kd-website-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.75rem;
+        background: var(--kd-primary);
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 0.9375rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 14px rgba(4, 31, 86, 0.2);
+    }
+
+    .kd-website-btn:hover {
+        background: var(--kd-primary-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(4, 31, 86, 0.3);
+    }
+
+    .kd-image-wrap {
+        border-radius: var(--kd-radius);
+        overflow: hidden;
+        box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.15);
+        border: 1px solid var(--kd-border);
+    }
+
+    .kd-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Vision / Mission Grid */
+    .kd-vm-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+        .kd-vm-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .kd-vm-card {
+        background: var(--kd-bg-light);
+        border: 1px solid var(--kd-border);
+        border-radius: 14px;
+        padding: 1.75rem;
+    }
+
+    .kd-vm-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .kd-vm-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--kd-accent);
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .kd-vm-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--kd-text-dark);
+        margin: 0;
+    }
+
+    .kd-vm-desc {
+        font-size: 0.9375rem;
+        color: var(--kd-text-muted);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Strategic Functions Section */
+    .kd-navy-section {
+        background: linear-gradient(135deg, #021235 0%, #041F56 60%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 5rem 0;
+    }
+
+    .kd-navy-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    @media (min-width: 992px) {
+        .kd-navy-grid {
+            grid-template-columns: 340px 1fr;
+        }
+    }
+
+    .kd-navy-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: #FFFFFF;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .kd-func-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--kd-radius);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .kd-func-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .kd-func-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .kd-func-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--kd-accent);
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .kd-func-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin: 0;
+    }
+
+    .kd-func-list {
+        margin: 0;
+        padding-left: 1.5rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+    }
+
+    .kd-func-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Journey Section */
+    .kd-journey-section {
+        background-color: var(--kd-bg-light);
+        padding: 5rem 0;
+    }
+
+    .kd-surveys-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+        .kd-surveys-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .kd-survey-item {
+        background: #FFFFFF;
+        border: 1px solid var(--kd-border);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .kd-survey-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 90, 31, 0.12);
+        color: var(--kd-accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+    }
+
+    .kd-survey-text {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--kd-text-dark);
+        line-height: 1.5;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="kd-hero">
+    <div class="kd-hero-bg">
+        <img src="{{ asset('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg') }}" alt="Bureau Background">
+    </div>
+    <div class="kd-hero-overlay"></div>
+
+    <div class="kd-hero-content">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb">
+            <div class="kd-breadcrumb">
+                <a href="{{ url('/') }}">Home</a>
+                <span class="kd-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <span>Governance</span>
+                <span class="kd-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <span style="color: #FFFFFF;">Bureau of Statistics</span>
             </div>
-        </section>
+        </nav>
 
-        <!-- About Bureau -->
-        <section class="section about-bureau" style="padding: 6rem 0;">
-            <div class="container">
-                <div class="about-bureau-grid"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                    <div class="about-bureau-content">
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 1.5rem; letter-spacing: -0.02em;">
-                            About the Bureau</h2>
-                        <p style="margin-bottom: 2rem; color: var(--gray-600); line-height: 1.7;">Kaduna State Bureau of
-                            Statistics is the statistical agency responsible for managing all sets of data and
-                            statistical activities in the State. It is the apex body and the custodian of all State
-                            official statistics and has the overall responsibility for overseeing the State Statistical
-                            System and coordinating the implementation of the State Statistical Master Plan. <a
-                                href="https://kdbs.ng/"
-                                style="color: blue; font-weight: 500; text-decoration: none;">Click here for the
-                                official website</a></p>
+        <h1 class="kd-title">Kaduna State Bureau of Statistics</h1>
+        <p class="kd-subtitle">The apex statistical agency and custodian of official state data, responsible for overseeing the State Statistical System and Master Plan.</p>
+    </div>
+</section>
 
-                        <div class="vmc-item" style="margin-top: 2.5rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--gray-700);">
-                                    Vision</h4>
+<!-- About Section -->
+<section class="kd-main-section">
+    <div class="kd-container">
+        <div class="kd-about-grid">
+            
+            <div>
+                <span class="kd-section-tag">APEX STATISTICAL AGENCY</span>
+                <h2 class="kd-section-heading">About the Bureau</h2>
+                <p class="kd-about-text">
+                    The Kaduna State Bureau of Statistics (KDBS) is the statistical authority responsible for generating, analyzing, and publishing all official statistical information in Kaduna State. It serves as the custodian of the State Statistical Master Plan and coordinates data activities across all government MDAs.
+                </p>
+
+                <a href="https://kdbs.ng/" target="_blank" rel="noopener noreferrer" class="kd-website-btn">
+                    <span>Visit Official Website (kdbs.ng)</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+
+                <div class="kd-vm-grid">
+                    <div class="kd-vm-card">
+                        <div class="kd-vm-header">
+                            <div class="kd-vm-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </div>
-                            <p style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.6;">To be a leading,
-                                reliable source of all statistical requirements of Kaduna state and beyond.</p>
+                            <h3 class="kd-vm-title">Vision</h3>
                         </div>
-
-                        <div class="vmc-item" style="margin-top: 2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--gray-700);">
-                                    Mission</h4>
-                            </div>
-                            <p style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.6;">To strengthen the
-                                Kaduna State Statistical System by generating quality statistics for decision makers,
-                                planners, and researchers in an objective, cost effective, timely and effective manner
-                                in line with the restoration master plan.</p>
-                        </div>
+                        <p class="kd-vm-desc">To be a leading, reliable source of all statistical requirements of Kaduna State and beyond.</p>
                     </div>
-                    <div class="about-bureau-image">
-                        <img src="{{ asset('assets/images/backgrounds/business-2904773_1280-1024x678.jpg') }}"
-                            alt="Business Statistics" style="width: 100%; height: auto; display: block;">
+
+                    <div class="kd-vm-card">
+                        <div class="kd-vm-header">
+                            <div class="kd-vm-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <h3 class="kd-vm-title">Mission</h3>
+                        </div>
+                        <p class="kd-vm-desc">To strengthen the State Statistical System by generating quality, objective, and timely statistics for decision makers and planners.</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- KDBS Strategic Function -->
-        <section class="section kdbs-strategic" style="background-color: #041f56; color: white; padding: 5rem 0;">
-            <div class="container">
-                <div class="strategic-grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;">
-                    <div class="strategic-left">
-                        <h2
-                            style="font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 2rem; color: white; letter-spacing: -0.02em;">
-                            KDBS<br>Strategic<br>Function</h2>
-                        <img src="{{ asset('assets/images/backgrounds/business-8174708_640.jpg') }}" alt="Boardroom"
-                            style="width: 100%; display: block; margin-bottom: 1.5rem;">
-                        <hr style="width: 60px; border: 1px solid #FF6B00; margin: 0; padding: 0;">
+            <div class="kd-image-wrap">
+                <img src="{{ asset('assets/images/backgrounds/business-2904773_1280-1024x678.jpg') }}" alt="KDBS Data Analytics">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Strategic Functions Section -->
+<section class="kd-navy-section">
+    <div class="kd-container">
+        <div class="kd-navy-grid">
+            
+            <div>
+                <span style="font-size: 0.8125rem; font-weight: 700; color: var(--kd-accent); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.5rem;">CORE MANDATE</span>
+                <h2 class="kd-navy-title">KDBS Strategic Functions</h2>
+                <div class="kd-image-wrap" style="margin-top: 2rem;">
+                    <img src="{{ asset('assets/images/backgrounds/business-8174708_640.jpg') }}" alt="KDBS Boardroom">
+                </div>
+            </div>
+
+            <div>
+                <!-- Block 1 -->
+                <div class="kd-func-card">
+                    <div class="kd-func-head">
+                        <div class="kd-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </div>
+                        <h3 class="kd-func-title">Strategic Responsibilities</h3>
                     </div>
-                    <div class="strategic-right">
-                        <!-- Strategic Function Item -->
-                        <div class="strategic-block" style="margin-bottom: 2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: white;">Strategic
-                                    Function</h4>
-                            </div>
-                            <ul
-                                style="padding-left: 2.2rem; list-style-type: disc; margin: 0; line-height: 1.4; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.2rem;">Be responsible for the development and management of
-                                    official Statistics</li>
-                                <li style="margin-bottom: 0.2rem;">Collecting, compiling, interpreting, analyzing,
-                                    publishing statistical information alone or in collaborating with other agencies
-                                    (both governmental and non- governmental)</li>
-                                <li style="margin-bottom: 0.2rem;">Developing and maintaining a comprehensive
-                                    socio-economic State Data Bank</li>
-                                <li style="margin-bottom: 0.2rem;">Fulfilling all other functions relating to statistics
-                                    which the government may direct from time to time.</li>
-                                <li style="margin-bottom: 0.2rem;">Developing and promoting the use of statistical
-                                    standards and appropriate methodologies in the state statistical system</li>
-                                <li style="margin-bottom: 0.2rem;">Advising the State and Local Government on all
-                                    matters relating to statistics.</li>
-                                <li style="margin-bottom: 0.2rem;">to eliminate waste, duplication, compromise of
-                                    quality, and improve statistical standards.</li>
-                            </ul>
-                        </div>
+                    <ul class="kd-func-list">
+                        <li>Development and management of official State Statistics.</li>
+                        <li>Collecting, compiling, interpreting, analyzing, and publishing statistical data.</li>
+                        <li>Developing and maintaining a comprehensive socio-economic State Data Bank.</li>
+                        <li>Promoting statistical standards and methodologies across all government bodies.</li>
+                        <li>Advising the State and Local Governments on statistical policy matters.</li>
+                    </ul>
+                </div>
 
-                        <!-- Departments and Functions -->
-                        <div class="strategic-block" style="margin-bottom: 2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: white;">Departments
-                                    and Functions</h4>
-                            </div>
-                            <p style="margin-bottom: 0.75rem; font-size: 0.85rem; color: white;">Research and
-                                Methodology Department The department is in-charge of:</p>
-                            <ul
-                                style="padding-left: 2.2rem; list-style-type: disc; margin: 0; line-height: 1.4; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.2rem;">Data management</li>
-                                <li style="margin-bottom: 0.2rem;">Data processing</li>
-                                <li style="margin-bottom: 0.2rem;">Methodology design</li>
-                                <li style="margin-bottom: 0.2rem;">Data analysis</li>
-                                <li style="margin-bottom: 0.2rem;">Quality check</li>
-                            </ul>
+                <!-- Block 2 -->
+                <div class="kd-func-card">
+                    <div class="kd-func-head">
+                        <div class="kd-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
                         </div>
+                        <h3 class="kd-func-title">Research & Methodology Department</h3>
+                    </div>
+                    <ul class="kd-func-list">
+                        <li>Data management, processing, methodology design, analysis, and quality assurance.</li>
+                    </ul>
+                </div>
 
-                        <!-- Census and Survey -->
-                        <div class="strategic-block" style="margin-bottom: 2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: white;">Cencus and
-                                    Survey Department</h4>
-                            </div>
-                            <p style="margin-bottom: 0.75rem; font-size: 0.85rem; color: white;">The department is
-                                in-charge of:</p>
-                            <ul
-                                style="padding-left: 2.2rem; list-style-type: disc; margin: 0; line-height: 1.4; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.2rem;">Field Activities</li>
-                                <li style="margin-bottom: 0.2rem;">Survey Frames</li>
-                                <li style="margin-bottom: 0.2rem;">Establishments</li>
-                                <li style="margin-bottom: 0.2rem;">Update of Frame</li>
-                                <li style="margin-bottom: 0.2rem;">Market prices data collection</li>
-                            </ul>
+                <!-- Block 3 -->
+                <div class="kd-func-card">
+                    <div class="kd-func-head">
+                        <div class="kd-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         </div>
+                        <h3 class="kd-func-title">Census & Survey Department</h3>
+                    </div>
+                    <ul class="kd-func-list">
+                        <li>Managing field activities, survey frames, establishment updates, and market price collection.</li>
+                    </ul>
+                </div>
 
-                        <!-- Social and Economic Statistics -->
-                        <div class="strategic-block">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: white;">Social and
-                                    Ecnomic Statistics</h4>
-                            </div>
-                            <p style="margin-bottom: 0.75rem; font-size: 0.85rem; color: white;">The department is
-                                in-charge of:</p>
-                            <ul
-                                style="padding-left: 2.2rem; list-style-type: disc; margin: 0; line-height: 1.4; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.2rem;">System of Administrative Statistics</li>
-                                <li style="margin-bottom: 0.2rem;">Social Statistics e.g Schools, Hospital, Transport
-                                </li>
-                                <li style="margin-bottom: 0.2rem;">Economic Statistics e.g GDP,CPI</li>
-                                <li style="margin-bottom: 0.2rem;">Vital Statistics</li>
-                            </ul>
+                <!-- Block 4 -->
+                <div class="kd-func-card">
+                    <div class="kd-func-head">
+                        <div class="kd-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                         </div>
+                        <h3 class="kd-func-title">Social & Economic Statistics Department</h3>
+                    </div>
+                    <ul class="kd-func-list">
+                        <li>Administrative statistics, social indicators (schools, health, transport), and economic metrics (GDP, CPI).</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Journey So Far -->
+<section class="kd-journey-section">
+    <div class="kd-container">
+        <div class="kd-about-grid" style="margin-bottom: 0;">
+            <div>
+                <span class="kd-section-tag">KEY MILESTONES</span>
+                <h2 class="kd-section-heading">Journey So Far</h2>
+                <p class="kd-about-text">KDBS has successfully executed major statistical surveys and census operations providing critical empirical evidence for Kaduna State.</p>
+
+                <div class="kd-surveys-grid">
+                    <div class="kd-survey-item">
+                        <div class="kd-survey-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="kd-survey-text">Annual School Census (2015/16, 2016/17, 2018/19)</div>
+                    </div>
+
+                    <div class="kd-survey-item">
+                        <div class="kd-survey-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="kd-survey-text">Agricultural Structure Survey (KASS)</div>
+                    </div>
+
+                    <div class="kd-survey-item">
+                        <div class="kd-survey-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="kd-survey-text">General Household Surveys</div>
+                    </div>
+
+                    <div class="kd-survey-item">
+                        <div class="kd-survey-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="kd-survey-text">State Gross Domestic Product (KDGDP) Survey</div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Journey So Far -->
-        <section class="section journey-so-far" style="padding: 6rem 0;">
-            <div class="container">
-                <div class="journey-grid"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                    <div class="journey-content">
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 1.5rem; letter-spacing: -0.02em;">
-                            Journey So Far</h2>
-                        <p style="margin-bottom: 2.5rem; color: var(--gray-600); font-size: 0.95rem;">KDBS has conducted
-                            the following Main Surveys from December 2016 till Date</p>
-                        <div class="surveys-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Annual School
-                                    Census 2015/2016, 2016/2017, 2018/2019</span>
-                            </div>
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Agricultural
-                                    Structure Survey (KASS) 2015/2016, 2016/2017, 2018/2019</span>
-                            </div>
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">General
-                                    Households surveys 2015/2016, 2016/2017</span>
-                            </div>
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">State Gross
-                                    Domestic Product (GDP) Survey (KDGDP)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="journey-image">
-                        <img src="{{ asset('assets/images/backgrounds/kd8.jpg') }}" alt="Journey So Far"
-                            style="width: 100%; display: block;">
-                    </div>
-                </div>
+            <div class="kd-image-wrap">
+                <img src="{{ asset('assets/images/backgrounds/kd8.jpg') }}" alt="KDBS Surveys and Field Activity">
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section class="section partners-section" id="partners">
-            <div class="container fade-up">
-                <div class="partners-header">
-                    <span class="partners-subtitle">DEVELOPMENT</span>
-                    <h2 class="partners-title">Partners</h2>
-                </div>
-                <div class="partners-marquee-wrapper">
-                    <div class="partners-marquee-content">
-                        <!-- Set 1 -->
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF">
-                        </div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}"
-                                alt="Bill & Melinda Gates Foundation"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}"
-                                alt="The World Bank"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
-                        <!-- Set 2 for seamless scrolling -->
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF">
-                        </div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}"
-                                alt="Bill & Melinda Gates Foundation"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}"
-                                alt="The World Bank"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
-                    </div>
-                </div>
+<!-- Development Partners Section -->
+<section class="section partners-section" id="partners">
+    <div class="container fade-up">
+        <div class="partners-header">
+            <span class="partners-subtitle">DEVELOPMENT</span>
+            <h2 class="partners-title">Partners</h2>
+        </div>
+        <div class="partners-marquee-wrapper">
+            <div class="partners-marquee-content">
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}" alt="Bill & Melinda Gates Foundation"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}" alt="The World Bank"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
+                <!-- Duplicate set for marquee loop -->
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}" alt="Bill & Melinda Gates Foundation"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}" alt="The World Bank"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
 @endsection
