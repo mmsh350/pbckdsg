@@ -1547,9 +1547,10 @@ button {
 }
 
 .partners-header {
-  border-bottom: 1px solid #E2E8F0;
-  padding-bottom: 1.5rem;
+  border-bottom: none;
+  padding-bottom: 0;
   margin-bottom: 3rem;
+  text-align: center;
 }
 
 .partners-subtitle {

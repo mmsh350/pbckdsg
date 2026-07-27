@@ -1100,11 +1100,11 @@
 </section>
 
 <!-- Development Partners Section -->
-<section class="section partners-section" id="partners">
+<section class="section partners-section" id="partners" style="padding: 6rem 0; background: var(--idx-bg-light);">
     <div class="container">
-        <div class="partners-header">
-            <span class="partners-subtitle">DEVELOPMENT</span>
-            <h2 class="partners-title">Partners</h2>
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span class="section-tag">DEVELOPMENT PARTNERS</span>
+            <h2 class="section-heading" style="margin-bottom: 0;">Strategic Global Collaboration</h2>
         </div>
         <div class="partners-marquee-wrapper">
             <div class="partners-marquee-content">
