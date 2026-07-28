@@ -24,16 +24,7 @@
                 </ul>
             </div>
             
-            <div class="footer-col-newsletter">
-                <h4 class="footer-heading">Suscribe Newsletter</h4>
-                <p class="newsletter-desc">Get free update right in your inbox, along with thousand others.</p>
-                <form class="newsletter-form" id="newsletterForm">
-                    <div class="input-group">
-                        <input type="email" placeholder="Your Email" required>
-                        <button type="submit" class="btn btn-blue">SIGN UP</button>
-                    </div>
-                </form>
-            </div>
+            <livewire:frontend.newsletter />
         </div>
         
         <div class="footer-bottom">

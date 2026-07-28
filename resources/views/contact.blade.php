@@ -344,7 +344,7 @@
                     </div>
                     <div class="ct-info-details">
                         <h4>Head Office Address</h4>
-                        <p>Planning & Budget Commission<br>State Secretariat, Independence Way<br>Kaduna, Kaduna State, Nigeria</p>
+                        <p>{!! nl2br(e(\App\Models\Setting::get('contact_address', "Planning & Budget Commission\nState Secretariat, Independence Way\nKaduna, Kaduna State, Nigeria"))) !!}</p>
                     </div>
                 </div>
 
@@ -354,7 +354,10 @@
                     </div>
                     <div class="ct-info-details">
                         <h4>Phone Lines</h4>
-                        <p>+234 (0) 800 000 0000<br>+234 (0) 900 000 0000</p>
+                        <p>
+                            {{ \App\Models\Setting::get('contact_phone_primary', '+234 (0) 800 000 0000') }}<br>
+                            {{ \App\Models\Setting::get('contact_phone_secondary', '+234 (0) 900 000 0000') }}
+                        </p>
                     </div>
                 </div>
 
@@ -364,7 +367,10 @@
                     </div>
                     <div class="ct-info-details">
                         <h4>Email Addresses</h4>
-                        <p>info@pbc.kdsg.gov.ng<br>support@pbc.kdsg.gov.ng</p>
+                        <p>
+                            {{ \App\Models\Setting::get('contact_primary_email', 'info@pbc.kdsg.gov.ng') }}<br>
+                            {{ \App\Models\Setting::get('contact_secondary_email', 'support@pbc.kdsg.gov.ng') }}
+                        </p>
                     </div>
                 </div>
 
@@ -374,7 +380,10 @@
                     </div>
                     <div class="ct-info-details">
                         <h4>Working Hours</h4>
-                        <p>Monday - Friday: 8:00 AM - 4:00 PM<br>Saturday & Sunday: Closed</p>
+                        <p>
+                            {{ \App\Models\Setting::get('contact_working_hours_weekday', 'Monday - Friday: 8:00 AM - 4:00 PM') }}<br>
+                            {{ \App\Models\Setting::get('contact_working_hours_weekend', 'Saturday & Sunday: Closed') }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -384,7 +393,13 @@
                 <h3 class="ct-form-title">Send us a Message</h3>
                 <p class="ct-form-sub">Fill out your details below and our team will get back to you promptly.</p>
 
-                <form action="#" method="POST">
+                @if (session('success'))
+                    <div style="background: #ECFDF5; border-left: 4px solid #10B981; color: #065F46; padding: 1rem; border-radius: 8px; font-size: 0.9375rem; font-weight: 600; margin-bottom: 1.5rem;">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('contact.send') }}" method="POST">
                     @csrf
                     <div class="ct-field-group">
                         <label for="name" class="ct-label">Full Name</label>

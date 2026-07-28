@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\News;
 
 use App\Models\News;
+use App\Services\SubscriberAlertService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
@@ -64,11 +65,8 @@ class Form extends Component
         ];
 
         if (!$this->news || !$this->news->exists) {
-            // New record: generate slug
             $data['slug'] = Str::slug($this->title) . '-' . uniqid();
         } else {
-            // Update record: regenerate slug if title changed significantly (optional, but let's keep it simple)
-            // Or just leave the old slug
             if ($this->title !== $this->news->title) {
                 $data['slug'] = Str::slug($this->title) . '-' . uniqid();
             }
@@ -78,12 +76,20 @@ class Form extends Component
             $data['featured_image'] = $this->featured_image->store('news', 'public');
         }
 
+        $wasPublishedBefore = $this->news && $this->news->exists ? $this->news->is_published : false;
+
         if ($this->news && $this->news->exists) {
             $this->news->update($data);
+            $newsRecord = $this->news;
             session()->flash('message', 'News updated successfully.');
         } else {
-            News::create($data);
+            $newsRecord = News::create($data);
             session()->flash('message', 'News created successfully.');
+        }
+
+        // Send automated broadcast alert to subscribers if newly published
+        if ($newsRecord->is_published && !$wasPublishedBefore) {
+            SubscriberAlertService::notifyNewArticle($newsRecord);
         }
 
         return $this->redirect(route('admin.news.index'), navigate: true);

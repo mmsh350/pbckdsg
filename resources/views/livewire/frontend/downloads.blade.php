@@ -250,6 +250,15 @@
             border-color: #E04810;
             transform: translateY(-1px);
         }
+        .dl-title-link {
+            color: #0F172A;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .dl-title-link:hover {
+            color: #FF5A1F;
+        }
     </style>
 
     <section class="dl-section">
@@ -329,9 +338,9 @@
                         <div class="dl-doc-card">
                             <div>
                                 <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem;">
-                                    <div class="dl-doc-icon" style="background-color: {{ $bg }}; color: {{ $color }}; border: 1px solid {{ $border }};">
+                                    <a href="{{ route('downloads.show', $doc) }}" class="dl-doc-icon" style="background-color: {{ $bg }}; color: {{ $color }}; border: 1px solid {{ $border }}; text-decoration: none;">
                                         {{ $ext }}
-                                    </div>
+                                    </a>
                                     <div style="flex: 1; min-width: 0;">
                                         @if($doc->category)
                                             <span class="dl-badge-category">
@@ -339,7 +348,9 @@
                                             </span>
                                         @endif
                                         <h4 class="dl-doc-title" title="{{ $doc->title }}">
-                                            {{ $doc->title }}
+                                            <a href="{{ route('downloads.show', $doc) }}" class="dl-title-link">
+                                                {{ $doc->title }}
+                                            </a>
                                         </h4>
                                         <div class="dl-doc-meta">
                                             <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>

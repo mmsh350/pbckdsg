@@ -9,7 +9,7 @@
                 <div class="px-6 py-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                         <h3 class="text-lg font-bold text-slate-800 tracking-tight">Slider Management</h3>
-                        <p class="text-sm text-slate-500 mt-1">Manage and reorder homepage banner images.</p>
+                        <p class="text-sm text-slate-500 mt-1">Manage, title, and reorder homepage banner images.</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <a href="{{ route('admin.sliders.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150 shadow-sm" wire:navigate>
@@ -34,6 +34,7 @@
                             <tr>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">S/N</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Preview</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Title & Subtitle</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Sort Order</th>
                                 <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
                                 <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
@@ -46,7 +47,15 @@
                                         {{ ($items->currentPage() - 1) * $items->perPage() + $loop->iteration }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <img src="{{ Storage::url($item->image) }}" class="w-32 h-16 object-cover rounded shadow-sm border border-slate-200">
+                                        <img src="{{ Storage::url($item->image) }}" class="w-28 h-16 object-cover rounded-lg shadow-sm border border-slate-200">
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800 text-sm max-w-xs truncate" title="{{ $item->title }}">
+                                            {{ $item->title ?: 'Default Title' }}
+                                        </div>
+                                        <div class="text-xs text-slate-500 max-w-xs truncate mt-0.5" title="{{ $item->subtitle }}">
+                                            {{ $item->subtitle ?: 'Default Subtitle' }}
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <input type="number" 
@@ -72,7 +81,7 @@
                                 </tr> 
                             @empty
                                 <tr>
-                                    <td colspan="5" class="px-6 py-12 text-center text-gray-500 text-sm">
+                                    <td colspan="6" class="px-6 py-12 text-center text-gray-500 text-sm">
                                         No sliders found. Click 'Create' to add one!
                                     </td>
                                 </tr>
@@ -85,4 +94,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>

@@ -492,7 +492,7 @@
                                 {{ $ext }}
                             </div>
                             <div>
-                                <div class="dd-file-name">{{ basename($document->file_path) }}</div>
+                                <div class="dd-file-name" title="{{ $document->title }}">{{ $document->title }}.{{ strtolower($ext) }}</div>
                                 <div class="dd-file-size">1 Attached File &bull; {{ $sizeFormatted }}</div>
                             </div>
                         </div>

@@ -46,6 +46,72 @@ Route::view('/downloads', 'downloads')->name('downloads');
 Route::get('/downloads/{document}', \App\Livewire\Frontend\DownloadDetails::class)->name('downloads.show');
 Route::view('/contact', 'contact')->name('contact');
 
+Route::post('/contact', function (\Illuminate\Http\Request $request) {
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'subject' => 'required|string|max:255',
+        'message' => 'required|string',
+    ]);
+
+    $contact = \App\Models\Contact::create($validated);
+
+    // Build recipient list based on Admin Settings
+    $recipients = [];
+    if (\App\Models\Setting::get('send_mail_to_primary', 1)) {
+        $primary = \App\Models\Setting::get('contact_primary_email', 'info@pbc.kdsg.gov.ng');
+        if ($primary) $recipients[] = trim($primary);
+    }
+    if (\App\Models\Setting::get('send_mail_to_secondary', 1)) {
+        $secondary = \App\Models\Setting::get('contact_secondary_email', 'support@pbc.kdsg.gov.ng');
+        if ($secondary) $recipients[] = trim($secondary);
+    }
+    if (\App\Models\Setting::get('send_mail_to_all_admins', 0)) {
+        $adminEmails = \App\Models\User::pluck('email')->toArray();
+        $recipients = array_merge($recipients, $adminEmails);
+    }
+
+    $recipients = array_unique(array_filter($recipients));
+
+    if (!empty($recipients)) {
+        \Illuminate\Support\Facades\Mail::to($recipients)->queue(new \App\Mail\ContactFormSubmitted($contact));
+    }
+
+    if (\App\Models\Setting::get('send_acknowledgment_to_sender', 1)) {
+        \Illuminate\Support\Facades\Mail::to($contact->email)->queue(new \App\Mail\ContactFormAcknowledgment($contact));
+    }
+
+    return back()->with('success', 'Thank you! Your message has been sent successfully. Our team will contact you shortly.');
+})->name('contact.send');
+
+Route::post('/newsletter/subscribe', function (\Illuminate\Http\Request $request) {
+    $validated = $request->validate([
+        'email' => 'required|email|max:255',
+    ]);
+
+    $subscriber = \App\Models\Subscriber::firstOrCreate(
+        ['email' => strtolower(trim($validated['email']))],
+        ['is_active' => true]
+    );
+
+    if ($subscriber->wasRecentlyCreated) {
+        try {
+            \Illuminate\Support\Facades\Mail::to($subscriber->email)->queue(new \App\Mail\NewsletterSubscribed($subscriber));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Newsletter mail error: ' . $e->getMessage());
+        }
+    }
+
+    if ($request->wantsJson() || $request->ajax()) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thank you for subscribing to Kaduna State PBC updates!'
+        ]);
+    }
+
+    return back()->with('newsletter_success', 'Thank you for subscribing to Kaduna State PBC updates!');
+})->name('newsletter.subscribe');
+
 Route::get('/documents/{document}/download', function (\App\Models\Document $document) {
     $document->increment('download_count');
     $extension = pathinfo($document->file_path, PATHINFO_EXTENSION);

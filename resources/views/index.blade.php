@@ -691,12 +691,16 @@
     <div class="hero-slider" id="heroSlider">
         @if($sliders->isNotEmpty())
             @foreach($sliders as $index => $slider)
-                <div class="slide {{ $index === 0 ? 'active' : '' }}">
-                    <img src="{{ Storage::url($slider->image) }}" alt="{{ $slider->title }}" loading="{{ $index === 0 ? 'eager' : 'lazy' }}">
+                <div class="slide {{ $index === 0 ? 'active' : '' }}" 
+                     data-title="{{ $slider->title ?? 'A World-Class & Dynamic Planning & Budget Commission' }}" 
+                     data-subtitle="{{ $slider->subtitle ?? 'Formulating policy frameworks, directing public expenditure, and managing strategic investments to elevate the living standards of Kaduna State residents.' }}">
+                    <img src="{{ Storage::url($slider->image) }}" alt="{{ $slider->title ?? 'Kaduna State Planning & Budget Commission' }}" loading="{{ $index === 0 ? 'eager' : 'lazy' }}">
                 </div>
             @endforeach
         @else
-            <div class="slide active">
+            <div class="slide active" 
+                 data-title="A World-Class & Dynamic Planning & Budget Commission" 
+                 data-subtitle="Formulating policy frameworks, directing public expenditure, and managing strategic investments to elevate the living standards of Kaduna State residents.">
                 <img src="{{ asset('assets/images/hero/hero-budget.jpg') }}" alt="Kaduna State Budget" loading="eager">
             </div>
         @endif
@@ -710,8 +714,12 @@
             <span>KADUNA STATE GOVERNMENT</span>
         </div>
 
-        <h1 class="hero-title-main">A World-Class & Dynamic Planning & Budget Commission</h1>
-        <p class="hero-subtitle-main">Formulating policy frameworks, directing public expenditure, and managing strategic investments to elevate the living standards of Kaduna State residents.</p>
+        <h1 class="hero-title-main" id="heroTitle" style="transition: opacity 0.3s ease;">
+            {{ $sliders->first()->title ?? 'A World-Class & Dynamic Planning & Budget Commission' }}
+        </h1>
+        <p class="hero-subtitle-main" id="heroSubtitle" style="transition: opacity 0.3s ease;">
+            {{ $sliders->first()->subtitle ?? 'Formulating policy frameworks, directing public expenditure, and managing strategic investments to elevate the living standards of Kaduna State residents.' }}
+        </p>
 
         <!-- Portals Grid -->
         <div class="hero-portals-grid">

@@ -12,7 +12,7 @@ new class extends Component
     }
 }; ?>
 
-<div class="flex shrink-0 z-50">
+<div class="flex shrink-0 z-50 relative lg:w-64">
     <!-- Mobile Off-Canvas Sidebar -->
     <div x-show="sidebarOpen" class="fixed inset-0 z-40 flex lg:hidden" style="display: none;" aria-modal="true">
         <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm" @click="sidebarOpen = false"></div>
