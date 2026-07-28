@@ -251,7 +251,7 @@
     .np-btn-primary:hover {
         background-color: var(--np-primary-light);
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(4, 31, 86, 0.2);
+        box-shadow: none;
     }
 
     /* Grid Section Header */

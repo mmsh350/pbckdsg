@@ -401,24 +401,48 @@
 
                 <form action="{{ route('contact.send') }}" method="POST">
                     @csrf
+                    
+                    <!-- Honeypot & Time-Trap Fields (Hidden from human visitors, traps automated bots) -->
+                    <div style="display: none !important; opacity: 0; position: absolute; left: -9999px;" aria-hidden="true">
+                        <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off">
+                        <input type="text" name="address_hp" tabindex="-1" autocomplete="off">
+                        <input type="hidden" name="form_time" value="{{ time() }}">
+                    </div>
+
                     <div class="ct-field-group">
                         <label for="name" class="ct-label">Full Name</label>
-                        <input type="text" id="name" name="name" class="ct-input" placeholder="e.g. Amina Bello" required>
+                        <input type="text" id="name" name="name" class="ct-input" placeholder="e.g. Amina Bello" value="{{ old('name') }}" required>
+                        @error('name') <span style="color: #EF4444; font-size: 0.8125rem; margin-top: 0.25rem; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="ct-field-group">
                         <label for="email" class="ct-label">Email Address</label>
-                        <input type="email" id="email" name="email" class="ct-input" placeholder="name@example.com" required>
+                        <input type="email" id="email" name="email" class="ct-input" placeholder="name@example.com" value="{{ old('email') }}" required>
+                        @error('email') <span style="color: #EF4444; font-size: 0.8125rem; margin-top: 0.25rem; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="ct-field-group">
                         <label for="subject" class="ct-label">Subject</label>
-                        <input type="text" id="subject" name="subject" class="ct-input" placeholder="How can we assist you?" required>
+                        <input type="text" id="subject" name="subject" class="ct-input" placeholder="How can we assist you?" value="{{ old('subject') }}" required>
+                        @error('subject') <span style="color: #EF4444; font-size: 0.8125rem; margin-top: 0.25rem; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="ct-field-group">
                         <label for="message" class="ct-label">Message</label>
-                        <textarea id="message" name="message" class="ct-textarea" placeholder="Type your message here..." required></textarea>
+                        <textarea id="message" name="message" class="ct-textarea" placeholder="Type your message here..." required>{{ old('message') }}</textarea>
+                        @error('message') <span style="color: #EF4444; font-size: 0.8125rem; margin-top: 0.25rem; display: block;">{{ $message }}</span> @enderror
+                    </div>
+
+                    <!-- Security Verification / Math Captcha -->
+                    @php
+                        $num1 = rand(2, 9);
+                        $num2 = rand(1, 8);
+                        session(['captcha_answer' => $num1 + $num2]);
+                    @endphp
+                    <div class="ct-field-group">
+                        <label for="captcha" class="ct-label">Security Verification: What is {{ $num1 }} + {{ $num2 }}?</label>
+                        <input type="number" id="captcha" name="captcha" class="ct-input" placeholder="Enter calculated number" required>
+                        @error('captcha') <span style="color: #EF4444; font-size: 0.8125rem; margin-top: 0.25rem; display: block; font-weight: 600;">{{ $message }}</span> @enderror
                     </div>
 
                     <button type="submit" class="ct-submit-btn">

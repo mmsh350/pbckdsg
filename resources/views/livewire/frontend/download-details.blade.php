@@ -272,13 +272,13 @@
             border-radius: 10px;
             text-decoration: none;
             transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 6px 16px rgba(255, 90, 31, 0.3);
+            box-shadow: none;
         }
 
         .dd-download-btn:hover {
             background-color: var(--dd-accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 90, 31, 0.4);
+            box-shadow: none;
         }
 
         /* Description Content */

@@ -49,8 +49,8 @@
 
         <!-- Header Actions -->
         <div class="header-actions">
-            <a href="https://www.opengovpartnership.org/members/kaduna-state-nigeria/" target="_blank" rel="noopener noreferrer" class="btn btn-blue">OpenGov Partnership</a>
-            <a href="https://nscfn.nationalplanning.gov.ng/fn-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="background-color: #FF5A1F;">Nutrition Dashboard</a>
+            <a href="{{ \App\Models\Setting::get('link_ogp_portal', 'https://www.opengovpartnership.org/members/kaduna-state-nigeria/') }}" target="_blank" rel="noopener noreferrer" class="btn btn-blue">OpenGov Partnership</a>
+            <a href="{{ \App\Models\Setting::get('link_nutrition_dashboard', 'https://nscfn.nationalplanning.gov.ng/fn-dashboard') }}" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="background-color: #FF5A1F;">Nutrition Dashboard</a>
         </div>
 
         <!-- Hamburger Menu -->

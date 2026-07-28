@@ -138,6 +138,55 @@
         </style>
     </head>
     <body class="font-sans antialiased text-slate-800 bg-slate-50">
+        <!-- Global Action & Navigation Progress Bar & Floating Indicator -->
+        <div x-data="{ isNavigating: false, isLoadingAction: false }"
+             x-on:livewire:navigating.window="isNavigating = true"
+             x-on:livewire:navigated.window="isNavigating = false"
+             x-init="
+                document.addEventListener('livewire:initialized', () => {
+                    Livewire.hook('commit', ({ respond }) => {
+                        isLoadingAction = true;
+                        respond(() => {
+                            isLoadingAction = false;
+                        });
+                    });
+                });
+                document.addEventListener('submit', () => {
+                    isLoadingAction = true;
+                    setTimeout(() => { isLoadingAction = false; }, 3000);
+                });
+             "
+             class="relative z-[99999]">
+
+            <!-- Top Gradient Progress Bar -->
+            <div x-show="isNavigating || isLoadingAction"
+                 x-transition:enter="transition-all ease-out duration-300"
+                 x-transition:enter-start="w-0 opacity-0"
+                 x-transition:enter-end="w-full opacity-100"
+                 x-transition:leave="transition-all ease-in duration-300"
+                 x-transition:leave-start="w-full opacity-100"
+                 x-transition:leave-end="w-full opacity-0"
+                 class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-emerald-500 to-amber-500 animate-pulse pointer-events-none shadow-sm"
+                 style="display: none;"></div>
+
+            <!-- Floating Action Toast Spinner -->
+            <div x-show="isLoadingAction"
+                 x-transition:enter="transition ease-out duration-200 transform"
+                 x-transition:enter-start="opacity-0 translate-y-2 scale-95"
+                 x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                 x-transition:leave="transition ease-in duration-150 transform"
+                 x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                 x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                 class="fixed bottom-6 right-6 flex items-center gap-3 px-4 py-3 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-2xl border border-slate-800 text-xs font-semibold pointer-events-none"
+                 style="display: none;">
+                <svg class="animate-spin h-4 w-4 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Processing action...</span>
+            </div>
+        </div>
+
         <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden w-full">
             <!-- Sidebar & Topbar (Navigation Component) -->
             <livewire:layout.navigation />
@@ -155,7 +204,7 @@
                 @endif
 
                 <!-- Main Scrollable Content -->
-                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50">
+                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 pt-16 lg:pt-0">
                     {{ $slot }}
                 </main>
             </div>

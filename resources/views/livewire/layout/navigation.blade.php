@@ -92,13 +92,13 @@ new class extends Component
     </div>
 
     <!-- Mobile Topbar Header -->
-    <div class="absolute top-0 left-0 w-full lg:hidden flex flex-col z-30 pointer-events-none">
-        <div class="flex-shrink-0 flex h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 pointer-events-auto">
-            <button @click="sidebarOpen = true" class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 lg:hidden">
+    <div class="fixed top-0 left-0 w-full lg:hidden flex flex-col z-30 pointer-events-none">
+        <div class="flex-shrink-0 flex h-16 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm pointer-events-auto">
+            <button @click="sidebarOpen = true" class="px-4 border-r border-slate-200 text-slate-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 lg:hidden">
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
             <div class="flex-1 px-4 flex items-center justify-between">
-                <span class="text-lg font-bold text-slate-800">PBC Admin</span>
+                <span class="text-base font-bold text-slate-800 tracking-tight">PBC Admin</span>
             </div>
         </div>
     </div>

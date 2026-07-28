@@ -90,14 +90,6 @@
         margin-bottom: 1.5rem;
     }
 
-    .hero-badge-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: var(--idx-accent);
-        box-shadow: 0 0 10px var(--idx-accent);
-    }
-
     .hero-title-main {
         font-size: 2.75rem;
         font-weight: 800;
@@ -569,13 +561,13 @@
         justify-content: center;
         gap: 0.75rem;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 20px rgba(255, 90, 31, 0.3);
+        box-shadow: none;
     }
 
     .btn-orange-lg:hover {
         background: var(--idx-accent-hover);
         transform: translateY(-2px);
-        box-shadow: 0 12px 28px rgba(255, 90, 31, 0.4);
+        box-shadow: none;
     }
 
     /* News Grid */
@@ -710,7 +702,6 @@
 
     <div class="hero-container-main">
         <div class="hero-badge-pill">
-            <span class="hero-badge-dot"></span>
             <span>KADUNA STATE GOVERNMENT</span>
         </div>
 
@@ -723,7 +714,7 @@
 
         <!-- Portals Grid -->
         <div class="hero-portals-grid">
-            <a href="https://play.google.com/store/apps/details?id=kaduna.citizen.feedback" target="_blank" rel="noopener noreferrer" class="portal-card">
+            <a href="{{ \App\Models\Setting::get('link_citifeed_app', 'https://play.google.com/store/apps/details?id=kaduna.citizen.feedback') }}" target="_blank" rel="noopener noreferrer" class="portal-card">
                 <div class="portal-icon" style="background: #FF5A1F;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 </div>
@@ -733,7 +724,7 @@
                 </div>
             </a>
 
-            <a href="https://www.opengovpartnership.org/members/kaduna-state-nigeria/" target="_blank" rel="noopener noreferrer" class="portal-card">
+            <a href="{{ \App\Models\Setting::get('link_ogp_portal', 'https://www.opengovpartnership.org/members/kaduna-state-nigeria/') }}" target="_blank" rel="noopener noreferrer" class="portal-card">
                 <div class="portal-icon" style="background: #2563EB;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                 </div>
@@ -743,7 +734,7 @@
                 </div>
             </a>
 
-            <a href="https://pbc.kdsg.gov.ng/download/2026-revenue-budget-template/" target="_blank" rel="noopener noreferrer" class="portal-card">
+            <a href="{{ \App\Models\Setting::get('link_budget_template', 'https://pbc.kdsg.gov.ng/download/2026-revenue-budget-template/') }}" target="_blank" rel="noopener noreferrer" class="portal-card">
                 <div class="portal-icon" style="background: #10B981;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 </div>
@@ -753,7 +744,7 @@
                 </div>
             </a>
 
-            <a href="https://nscfn.nationalplanning.gov.ng/fn-dashboard" target="_blank" rel="noopener noreferrer" class="portal-card">
+            <a href="{{ \App\Models\Setting::get('link_nutrition_dashboard', 'https://nscfn.nationalplanning.gov.ng/fn-dashboard') }}" target="_blank" rel="noopener noreferrer" class="portal-card">
                 <div class="portal-icon" style="background: #8B5CF6;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                 </div>
@@ -794,13 +785,15 @@
         <div class="overview-grid">
             <div>
                 <span class="section-tag">INSTITUTIONAL FOUNDATION</span>
-                <h2 class="section-heading">Welcome to the Commission</h2>
+                <h2 class="section-heading">{{ \App\Models\Setting::get('about_welcome_heading', 'Welcome to the Commission') }}</h2>
                 <p class="overview-text">
-                    Established under Law No. 2017, the Kaduna State Planning and Budget Commission serves as the central machinery for economic planning, annual budget formulation, project monitoring, and social investment coordination.
+                    {{ \App\Models\Setting::get('about_welcome_text_1', 'Established under Law No. 2017, the Kaduna State Planning and Budget Commission serves as the central machinery for economic planning, annual budget formulation, project monitoring, and social investment coordination.') }}
                 </p>
-                <p class="overview-text">
-                    From its origins in 1979 to its modern statutory role, the Commission manages public finances and donor partnerships across all 23 Local Government Areas in Kaduna State.
-                </p>
+                @if(\App\Models\Setting::get('about_welcome_text_2'))
+                    <p class="overview-text">
+                        {{ \App\Models\Setting::get('about_welcome_text_2') }}
+                    </p>
+                @endif
                 
                 <div style="margin-top: 2rem;">
                     <a href="{{ url('departments') }}" class="btn-orange-lg">
@@ -819,7 +812,7 @@
                         </div>
                         <h3 class="vmc-title-v2">Vision</h3>
                     </div>
-                    <p class="vmc-desc-v2">A world-class and dynamic Planning and Budget Agency creating a vibrant economy for continuous improvement of the living standards of the people of Kaduna State.</p>
+                    <p class="vmc-desc-v2">{{ \App\Models\Setting::get('about_vision', 'A world-class and dynamic Planning and Budget Agency creating a vibrant economy for continuous improvement of the living standards of the people of Kaduna State.') }}</p>
                 </div>
 
                 <div class="vmc-card-v2 dark">
@@ -829,7 +822,7 @@
                         </div>
                         <h3 class="vmc-title-v2">Mission</h3>
                     </div>
-                    <p class="vmc-desc-v2">To serve as an effective machinery for the formulation, coordination, monitoring and evaluation of Government economic policies, plans and budgets using a competent workforce.</p>
+                    <p class="vmc-desc-v2">{{ \App\Models\Setting::get('about_mission', 'To serve as an effective machinery for the formulation, coordination, monitoring and evaluation of Government economic policies, plans and budgets using a competent workforce.') }}</p>
                 </div>
 
                 <div class="vmc-card-v2">
@@ -839,54 +832,66 @@
                         </div>
                         <h3 class="vmc-title-v2">Core Values</h3>
                     </div>
-                    <p class="vmc-desc-v2">Dedication, Integrity, Teamwork, Fiscal Transparency, Employee Welfare, and Continuous Innovation.</p>
+                    <p class="vmc-desc-v2">{{ \App\Models\Setting::get('about_core_values', 'Dedication, Integrity, Teamwork, Fiscal Transparency, Employee Welfare, and Continuous Innovation.') }}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+@php
+    $govImgSetting = \App\Models\Setting::get('governor_image');
+    $govImgUrl = $govImgSetting ? Storage::url($govImgSetting) : asset('assets/images/leadership/governor.jpg');
+
+    $commImgSetting = \App\Models\Setting::get('commissioner_image');
+    $commImgUrl = $commImgSetting ? Storage::url($commImgSetting) : asset('assets/images/leadership/commissioner.png');
+
+    $govTagsString = \App\Models\Setting::get('governor_tags', 'Safety & Security, Infrastructure, Human Capital, Agriculture, Trade & Investment, OGP Transparency');
+    $govTags = array_filter(array_map('trim', explode(',', $govTagsString)));
+@endphp
+
 <!-- Executive Leadership Section -->
 <section class="leadership-section">
     <div class="container">
-        <span class="section-tag">EXECUTIVE LEADERSHIP</span>
-        <h2 class="section-heading">Steering Kaduna's Socio-Economic Agenda</h2>
+        <span class="section-tag">{{ \App\Models\Setting::get('leadership_section_tag', 'EXECUTIVE LEADERSHIP') }}</span>
+        <h2 class="section-heading">{{ \App\Models\Setting::get('leadership_section_heading', "Steering Kaduna's Socio-Economic Agenda") }}</h2>
 
         <div class="leadership-grid">
             <!-- Governor -->
             <div class="leader-card">
                 <div class="leader-img-box">
-                    <img src="{{ asset('assets/images/leadership/governor.jpg') }}" alt="Sen. Uba Sani - Executive Governor of Kaduna State">
+                    <img src="{{ $govImgUrl }}" alt="{{ \App\Models\Setting::get('governor_name', 'Sen. Uba Sani') }} - {{ \App\Models\Setting::get('governor_role', 'Executive Governor of Kaduna State') }}">
                 </div>
                 <div class="leader-body">
-                    <span class="leader-role">Executive Governor of Kaduna State</span>
-                    <h3 class="leader-name">Sen. Uba Sani</h3>
-                    <p class="leader-bio">Leading the administration with a strategic mandate focused on rural transformation, human capital development, institutional reform, and inclusive economic growth across Kaduna State.</p>
+                    <span class="leader-role">{{ \App\Models\Setting::get('governor_role', 'Executive Governor of Kaduna State') }}</span>
+                    <h3 class="leader-name">{{ \App\Models\Setting::get('governor_name', 'Sen. Uba Sani') }}</h3>
+                    <p class="leader-bio">{{ \App\Models\Setting::get('governor_bio', 'Leading the administration with a strategic mandate focused on rural transformation, human capital development, institutional reform, and inclusive economic growth across Kaduna State.') }}</p>
                     
-                    <div class="pills-grid">
-                        <span class="prior-pill">Safety & Security</span>
-                        <span class="prior-pill">Infrastructure</span>
-                        <span class="prior-pill">Human Capital</span>
-                        <span class="prior-pill">Agriculture</span>
-                        <span class="prior-pill">Trade & Investment</span>
-                        <span class="prior-pill">OGP Transparency</span>
-                    </div>
+                    @if(count($govTags) > 0)
+                        <div class="pills-grid">
+                            @foreach($govTags as $tag)
+                                <span class="prior-pill">{{ $tag }}</span>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
 
             <!-- Commissioner -->
             <div class="leader-card">
                 <div class="leader-img-box">
-                    <img src="{{ asset('assets/images/leadership/commissioner.png') }}" alt="Hon. Mukhtar Ahmed Monrovia - Honorable Commissioner">
+                    <img src="{{ $commImgUrl }}" alt="{{ \App\Models\Setting::get('commissioner_name', 'Hon. Mukhtar Ahmed Monrovia') }} - {{ \App\Models\Setting::get('commissioner_role', 'Honourable Commissioner') }}">
                 </div>
                 <div class="leader-body">
-                    <span class="leader-role">Honourable Commissioner</span>
-                    <h3 class="leader-name">Hon. Mukhtar Ahmed Monrovia</h3>
-                    <p class="leader-bio">"Our dedicated team works tirelessly to ensure optimal resource allocation, fiscal discipline, and empirical M&E to create a lasting positive impact across all sectors of our economy."</p>
+                    <span class="leader-role">{{ \App\Models\Setting::get('commissioner_role', 'Honourable Commissioner') }}</span>
+                    <h3 class="leader-name">{{ \App\Models\Setting::get('commissioner_name', 'Hon. Mukhtar Ahmed Monrovia') }}</h3>
+                    <p class="leader-bio">{{ \App\Models\Setting::get('commissioner_bio', '"Our dedicated team works tirelessly to ensure optimal resource allocation, fiscal discipline, and empirical M&E to create a lasting positive impact across all sectors of our economy."') }}</p>
                     
-                    <div class="pills-grid" style="margin-top: auto;">
-                        <span class="prior-pill" style="background: rgba(255, 90, 31, 0.1); color: var(--idx-accent); border-color: rgba(255, 90, 31, 0.2);">Planning & Budget Commission</span>
-                    </div>
+                    @if(\App\Models\Setting::get('commissioner_tag', 'Planning & Budget Commission'))
+                        <div class="pills-grid" style="margin-top: auto;">
+                            <span class="prior-pill" style="background: rgba(255, 90, 31, 0.1); color: var(--idx-accent); border-color: rgba(255, 90, 31, 0.2);">{{ \App\Models\Setting::get('commissioner_tag', 'Planning & Budget Commission') }}</span>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -1070,7 +1075,7 @@
                 </p>
 
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--idx-border);">
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style="font-size: 0.875rem; font-weight: 700; color: var(--idx-accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <a href="{{ \App\Models\Setting::get('social_twitter_url', 'https://twitter.com') }}" target="_blank" rel="noopener noreferrer" style="font-size: 0.875rem; font-weight: 700; color: var(--idx-accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
                         <span>Follow @KADPBC on X</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
@@ -1097,7 +1102,7 @@
                 </p>
 
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--idx-border);">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style="font-size: 0.875rem; font-weight: 700; color: #1877F2; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <a href="{{ \App\Models\Setting::get('social_facebook_url', 'https://facebook.com') }}" target="_blank" rel="noopener noreferrer" style="font-size: 0.875rem; font-weight: 700; color: #1877F2; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
                         <span>Join Community on Facebook</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>

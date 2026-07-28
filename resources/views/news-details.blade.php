@@ -224,6 +224,7 @@
         margin-top: 0.25rem;
         color: var(--nd-primary);
     }
+    
 
     .nd-prose-container h2,
     .nd-prose-container h3,
@@ -562,7 +563,7 @@
 <section class="nd-main-wrapper">
     <div class="nd-container">
         <div class="nd-grid">
-            
+
             <!-- Article Body Column (Left) -->
             <div>
                 @if($news->featured_image)

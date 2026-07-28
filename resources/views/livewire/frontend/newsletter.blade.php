@@ -10,6 +10,9 @@
     @endif
 
     <form wire:submit="subscribe" class="newsletter-form">
+        <div style="display: none !important; opacity: 0; position: absolute; left: -9999px;" aria-hidden="true">
+            <input type="text" wire:model="hp_field" tabindex="-1" autocomplete="off">
+        </div>
         <div class="input-group">
             <input type="email" wire:model="email" placeholder="Your Email Address" required>
             <button type="submit" class="btn btn-blue" wire:loading.attr="disabled">

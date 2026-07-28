@@ -143,14 +143,14 @@
         background-color: #FF5A1F;
         border-color: #FF5A1F;
         transform: translateY(-2px);
-        box-shadow: 0 6px 14px rgba(255, 90, 31, 0.3);
+        box-shadow: none;
     }
 
     .custom-pagination .page-item.active .page-link {
         color: #FFFFFF;
         background: linear-gradient(135deg, #041F56 0%, #0B3485 100%);
         border-color: #041F56;
-        box-shadow: 0 6px 16px rgba(4, 31, 86, 0.25);
+        box-shadow: none;
     }
 
     .custom-pagination .page-item.disabled .page-link {

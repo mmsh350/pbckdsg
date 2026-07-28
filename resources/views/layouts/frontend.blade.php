@@ -122,6 +122,48 @@
             0% { left: -100%; }
             100% { left: 100%; }
         }
+
+        /* Remove all shadows from all buttons globally */
+        button,
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"],
+        .btn,
+        .btn-orange-lg,
+        .btn-blue,
+        .btn-green,
+        .btn-primary,
+        .btn-secondary,
+        .btn-outline,
+        .nd-cta-btn,
+        .nd-share-btn,
+        .read-more-btn,
+        .nav-btn,
+        .page-link,
+        .doc-download-btn,
+        .filter-btn,
+        .hero-grid-btn,
+        [class*="btn"],
+        [class*="button"] {
+            box-shadow: none !important;
+        }
+
+        button:hover,
+        button:focus,
+        button:active,
+        input[type="button"]:hover,
+        input[type="submit"]:hover,
+        .btn:hover,
+        .btn:focus,
+        .btn:active,
+        [class*="btn"]:hover,
+        [class*="btn"]:focus,
+        [class*="btn"]:active,
+        [class*="button"]:hover,
+        [class*="button"]:focus,
+        [class*="button"]:active {
+            box-shadow: none !important;
+        }
     </style>
 
     @stack('styles')
