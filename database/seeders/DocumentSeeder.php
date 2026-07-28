@@ -17,7 +17,7 @@ class DocumentSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             $title = $faker->catchPhrase();
-            
+
             \App\Models\Document::create([
                 'title' => $title,
                 'slug' => \Illuminate\Support\Str::slug($title . '-' . rand(100, 999)),

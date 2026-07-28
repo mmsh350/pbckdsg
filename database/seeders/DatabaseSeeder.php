@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Production Safety Shield: Prevent seeding dummy data in production
+        if (App::environment('production') || App::isProduction()) {
+            if (isset($this->command)) {
+                $this->command->warn('Seeding fake test data is disabled in production environment.');
+            }
+            return;
+        }
+
         $this->call([
             DocumentSeeder::class,
             NewsSeeder::class,
