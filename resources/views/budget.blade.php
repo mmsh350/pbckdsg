@@ -1,374 +1,494 @@
 @extends('layouts.frontend')
 
-@section('title', 'Budget | Planning & Budget Commission')
+@section('title', 'Budget Department | Planning & Budget Commission')
 
 @section('content')
-<!-- Page Hero -->
-        <section class="page-hero"
-            style="background-image: linear-gradient(to right, rgba(4, 31, 86, 0.98), rgba(4, 31, 86, 0.6)), url('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg'); background-size: cover; background-position: center; padding: 10rem 0 8rem; color: white;">
-            <div class="container">
-                <div class="breadcrumbs"
-                    style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 700; margin-bottom: 2rem; color: white; text-transform: uppercase; letter-spacing: 0.05em;">
-                    <a href="index.html" style="color: white; text-decoration: none;">HOME</a>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <a href="#" style="color: white; text-decoration: none;">GOVERNANCE</a>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="4" width="14" height="14"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <span style="color: white;">DEPARTMENTS</span>
-                </div>
-                <h1
-                    style="font-size: 2.5rem; font-weight: 800; color: white; margin: 0; line-height: 1.15; letter-spacing: -0.02em;">
-                    Budget Department</h1>
+
+<style>
+    :root {
+        --bg-primary: #041F56;
+        --bg-primary-light: #0B3485;
+        --bg-accent: #FF5A1F;
+        --bg-accent-hover: #E04810;
+        --bg-text-dark: #0F172A;
+        --bg-text-muted: #64748B;
+        --bg-bg-light: #F8FAFC;
+        --bg-border: #E2E8F0;
+        --bg-radius: 16px;
+    }
+
+    /* Hero Section */
+    .bg-hero {
+        position: relative;
+        background: linear-gradient(135deg, #021235 0%, #041F56 50%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 9rem 0 5rem;
+        overflow: hidden;
+    }
+
+    .bg-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .bg-hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.18;
+        filter: blur(3px);
+    }
+
+    .bg-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 70% 30%, rgba(255, 90, 31, 0.15) 0%, transparent 60%);
+    }
+
+    .bg-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .bg-breadcrumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 0.5rem 1.25rem;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        margin-bottom: 2rem;
+    }
+
+    .bg-breadcrumb a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .bg-breadcrumb a:hover {
+        color: var(--bg-accent);
+    }
+
+    .bg-breadcrumb-sep {
+        color: var(--bg-accent);
+    }
+
+    .bg-title {
+        color: #FFFFFF;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .bg-title { font-size: 3.5rem; }
+    }
+
+    .bg-subtitle {
+        font-size: 1.125rem;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 700px;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Main About Section */
+    .bg-main-section {
+        background-color: #FFFFFF;
+        padding: 5rem 0;
+    }
+
+    .bg-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .bg-about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+        align-items: center;
+        margin-bottom: 4rem;
+    }
+
+    @media (min-width: 992px) {
+        .bg-about-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .bg-section-tag {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--bg-accent);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .bg-section-heading {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--bg-text-dark);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .bg-about-text {
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        color: var(--bg-text-muted);
+        margin-bottom: 1.5rem;
+    }
+
+    .bg-image-wrap {
+        border-radius: var(--bg-radius);
+        overflow: hidden;
+        box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.15);
+        border: 1px solid var(--bg-border);
+    }
+
+    .bg-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Core Functions Navy Section */
+    .bg-navy-section {
+        background: linear-gradient(135deg, #021235 0%, #041F56 60%, #0B3485 100%);
+        color: #FFFFFF;
+        padding: 5rem 0;
+    }
+
+    .bg-navy-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    @media (min-width: 992px) {
+        .bg-navy-grid {
+            grid-template-columns: 340px 1fr;
+        }
+    }
+
+    .bg-navy-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: #FFFFFF;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+    }
+
+    .bg-func-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--bg-radius);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .bg-func-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .bg-func-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .bg-func-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--bg-accent);
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .bg-func-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin: 0;
+    }
+
+    .bg-func-list {
+        margin: 0;
+        padding-left: 1.5rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9375rem;
+        line-height: 1.7;
+    }
+
+    .bg-func-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Roles & Responsibilities Section */
+    .bg-roles-section {
+        background-color: var(--bg-bg-light);
+        padding: 5rem 0;
+    }
+
+    .bg-roles-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    @media (min-width: 640px) {
+        .bg-roles-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .bg-roles-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .bg-role-card {
+        background: #FFFFFF;
+        border: 1px solid var(--bg-border);
+        border-radius: 14px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .bg-role-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.06);
+    }
+
+    .bg-role-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 90, 31, 0.12);
+        color: var(--bg-accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+    }
+
+    .bg-role-text {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--bg-text-dark);
+        line-height: 1.5;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="bg-hero">
+    <div class="bg-hero-bg">
+        <img src="{{ asset('assets/images/backgrounds/GLSlf9uWAAAbC-D.jpeg') }}" alt="Budget Background">
+    </div>
+    <div class="bg-hero-overlay"></div>
+
+    <div class="bg-hero-content">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb">
+            <div class="bg-breadcrumb">
+                <a href="{{ url('/') }}">Home</a>
+                <span class="bg-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <a href="{{ url('departments') }}">Departments</a>
+                <span class="bg-breadcrumb-sep">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </span>
+                <span style="color: #FFFFFF;">Budget Department</span>
             </div>
-        </section>
+        </nav>
 
-        <!-- About Department -->
-        <section class="section about-bureau" style="padding: 6rem 0;">
-            <div class="container">
-                <div class="about-bureau-grid"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                    <div class="about-bureau-content">
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 1.5rem; letter-spacing: -0.02em;">
-                            About the Department</h2>
-                        <p style="margin-bottom: 2rem; color: var(--gray-600); line-height: 1.7; font-size: 0.95rem;">
-                            The Budget Department serves as a core unit within the Kaduna State Planning and Budget
-                            Commission, spearheading the state's budgeting process and fiscal management. It coordinates
-                            the preparation and implementation of the annual state budget, working closely with all
-                            Ministries, Departments, and Agencies (MDAs) to ensure effective resource allocation and
-                            utilization. The department issues budget guidelines, provides technical support, reviews
-                            budget proposals, monitors implementation, and prepares performance reports while
-                            maintaining strict adherence to budgeting best practices – all aimed at achieving the
-                            state's development objectives and enhancing service delivery to the people of Kaduna State.
-                        </p>
-                    </div>
-                    <div class="about-bureau-image">
-                        <img src="{{ asset('assets/images/backgrounds/GWLR5FVXkAAyOpM-768x576.jpeg') }}"
-                            alt="Budget Department Meeting" style="width: 100%; height: auto; display: block;">
-                    </div>
+        <h1 class="bg-title">Budget Department</h1>
+        <p class="bg-subtitle">Spearheading fiscal governance, annual state budget formulation, Medium-Term Expenditure Frameworks (MTEF), and strategic revenue-expenditure modeling.</p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="bg-main-section">
+    <div class="bg-container">
+        <div class="bg-about-grid">
+            <div>
+                <span class="bg-section-tag">FISCAL GOVERNANCE</span>
+                <h2 class="bg-section-heading">About the Department</h2>
+                <p class="bg-about-text">
+                    The Budget Department is the core engine for fiscal management in Kaduna State. Working closely with all Ministries, Departments, and Agencies (MDAs), the department manages the end-to-end preparation, approval, and execution of annual appropriation bills.
+                </p>
+                <p class="bg-about-text">
+                    By issuing call circulars, establishing revenue forecasts, conducting technical estimates reviews, and enforcing compliance with public financial management regulations, the department ensures every naira is aligned with Kaduna State's development priorities.
+                </p>
+            </div>
+
+            <div class="bg-image-wrap">
+                <img src="{{ asset('assets/images/backgrounds/GWLR5FVXkAAyOpM-768x576.jpeg') }}" alt="Budget Strategy Session">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Functions Navy Section -->
+<section class="bg-navy-section">
+    <div class="bg-container">
+        <div class="bg-navy-grid">
+            
+            <div>
+                <span style="font-size: 0.8125rem; font-weight: 700; color: var(--bg-accent); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.5rem;">CORE MANDATE</span>
+                <h2 class="bg-navy-title">Statutory Functions & Structure</h2>
+                <div class="bg-image-wrap" style="margin-top: 2rem;">
+                    <img src="{{ asset('assets/images/backgrounds/business-8174708_640.jpg') }}" alt="Boardroom Overview">
                 </div>
             </div>
-        </section>
 
-        <!-- Core Functions -->
-        <section class="section kdbs-strategic" style="background-color: #041f56; color: white; padding: 5rem 0;">
-            <div class="container">
-                <div class="strategic-grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;">
-                    <div class="strategic-left">
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 2rem; color: white; letter-spacing: -0.02em;">
-                            Core<br>Functions</h2>
-                        <img src="{{ asset('assets/images/backgrounds/business-8174708_640.jpg') }}" alt="Boardroom"
-                            style="width: 100%; display: block; margin-bottom: 1.5rem;">
-                        <hr style="width: 60px; border: 1px solid #FF6B00; margin: 0; padding: 0;">
+            <div>
+                <!-- Block 1 -->
+                <div class="bg-func-card">
+                    <div class="bg-func-head">
+                        <div class="bg-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        </div>
+                        <h3 class="bg-func-title">Budget Preparation & Management</h3>
                     </div>
-                    <div class="strategic-right">
-                        <!-- Function 1 -->
-                        <div class="strategic-block" style="margin-bottom: 2rem;">
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4
-                                    style="margin: 0; font-size: 1.1rem; font-weight: 700; color: white; line-height: 1.4;">
-                                    Managing the State Government Budget preparation process</h4>
-                            </div>
-                            <ul
-                                style="padding-left: 2.2rem; list-style-type: disc; margin: 0; line-height: 1.5; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.4rem;">Issuing Budget Call Circular and Guideline, including
-                                    Revenue</li>
-                                <li style="margin-bottom: 0.4rem;">Forecasts and apportionment of ceilings between MDAs.
-                                </li>
-                                <li style="margin-bottom: 0.4rem;">Facilitate Budget Reviews.</li>
-                                <li style="margin-bottom: 0.4rem;">Ensuring Budget match plans.</li>
-                                <li style="margin-bottom: 0.4rem;">Serve as the secretariat of the State Estimate
-                                    Committee.</li>
-                            </ul>
-                        </div>
+                    <ul class="bg-func-list">
+                        <li>Issuing Annual Budget Call Circulars, guidelines, and revenue ceiling apportionments for all MDAs.</li>
+                        <li>Facilitating comprehensive budget bilateral reviews and matching budgets to strategic plans.</li>
+                        <li>Serving as the official Secretariat to the State Estimates Committee.</li>
+                    </ul>
+                </div>
 
-                        <!-- Function 2 -->
-                        <div class="strategic-block" style="margin-bottom: 2rem;">
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4
-                                    style="margin: 0; font-size: 1.1rem; font-weight: 700; color: white; line-height: 1.4;">
-                                    Legal Framework</h4>
-                            </div>
-                            <p
-                                style="margin-bottom: 0.75rem; padding-left: 2.2rem; font-size: 0.85rem; color: white; line-height: 1.5;">
-                                <strong>121.(1)</strong> The Governor shall cause to be prepared and laid before the
-                                House of Assembly at any time before the commencement of each financial year estimates
-                                of the revenues and expenditures of the State for the next following financial year.
-                                (Authorisation of expenditure from Consolidated Revenue Fund)
-                            </p>
+                <!-- Block 2 -->
+                <div class="bg-func-card">
+                    <div class="bg-func-head">
+                        <div class="bg-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                         </div>
-
-                        <!-- Function 3 -->
-                        <div class="strategic-block">
-                            <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
-                                <div class="icon-circle"
-                                    style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                        stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        style="margin-left: 2px;">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </div>
-                                <h4
-                                    style="margin: 0; font-size: 1.1rem; font-weight: 700; color: white; line-height: 1.4;">
-                                    Structure of government Budget</h4>
-                            </div>
-                            <ol
-                                style="padding-left: 3rem; margin: 0; line-height: 1.5; font-size: 0.85rem; color: white;">
-                                <li style="margin-bottom: 0.4rem;">Revenue
-                                    <ul
-                                        style="padding-left: 1.5rem; list-style-type: circle; margin-top: 0.2rem; margin-bottom: 0.4rem;">
-                                        <li>Internally Generated Revenue (IGR)</li>
-                                        <li>Statutory Allocation</li>
-                                        <li>Value Added Tax (VAT)</li>
-                                        <li>Loans</li>
-                                        <li>Grants</li>
-                                    </ul>
-                                </li>
-                                <li style="margin-bottom: 0.4rem;">Expenditure
-                                    <ul
-                                        style="padding-left: 1.5rem; list-style-type: circle; margin-top: 0.2rem; margin-bottom: 0.4rem;">
-                                        <li>Recurrent –Personnel Cost and Overhead Cost</li>
-                                        <li>Capital Expenditure – Programme /Projects, Infrastructure or equipment</li>
-                                    </ul>
-                                </li>
-                            </ol>
-                        </div>
+                        <h3 class="bg-func-title">Constitutional Framework (Section 121)</h3>
                     </div>
+                    <p style="color: rgba(255, 255, 255, 0.85); font-size: 0.9375rem; line-height: 1.7; margin: 0;">
+                        Pursuant to Section 121(1) of the 1999 Constitution (as amended), the Governor shall cause to be prepared and laid before the House of Assembly estimates of revenues and expenditures for the State for each financial year.
+                    </p>
+                </div>
+
+                <!-- Block 3 -->
+                <div class="bg-func-card">
+                    <div class="bg-func-head">
+                        <div class="bg-func-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <h3 class="bg-func-title">Structure of State Budget</h3>
+                    </div>
+                    <ul class="bg-func-list">
+                        <li><strong>Revenues:</strong> Internally Generated Revenue (IGR), Statutory Allocation, VAT, Loans, Grants.</li>
+                        <li><strong>Recurrent Expenditure:</strong> Personnel Costs & Overhead Costs.</li>
+                        <li><strong>Capital Expenditure:</strong> Infrastructure Projects, Sectoral Programs & Capital Equipment.</li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Roles and Responsibilities -->
-        <section class="section roles-responsibilities" style="padding: 6rem 0; background-color: white;">
-            <div class="container">
-                <div class="roles-grid"
-                    style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: flex-start;">
-                    <div class="roles-content">
-                        <span
-                            style="display: block; font-size: 0.75rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">DEPARTMENT'S</span>
-                        <h2
-                            style="font-size: 2.5rem; font-weight: 800; color: #041f56; margin-bottom: 2.5rem; letter-spacing: -0.02em;">
-                            Roles and Responsibilities</h2>
+        </div>
+    </div>
+</section>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                            <!-- Column 1 -->
-                            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Writing
-                                        of letters to Government House and MDAs</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Issuance
-                                        of releases for request approved by the Governor</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Report
-                                        Writing</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Liaising
-                                        with MDAs on budget issues and other related issues</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span
-                                        style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Compilations
-                                        of Contractual commitments of MDAs</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span
-                                        style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Production
-                                        of Implementation status on MDAs performance</span>
-                                </div>
-                            </div>
+<!-- Roles & Responsibilities Section -->
+<section class="bg-roles-section">
+    <div class="bg-container">
+        <span class="bg-section-tag">OPERATIONAL EXCELLENCE</span>
+        <h2 class="bg-section-heading">Roles & Operational Duties</h2>
 
-                            <!-- Column 2 -->
-                            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Drafting
-                                        of Medium Term Expenditure Framework (MTEF)</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span
-                                        style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Production
-                                        of Budget Expenditure Profile</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Gender
-                                        and Social Inclusion issues</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span
-                                        style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Computation
-                                        of fringe benefits of Political Appointees</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span
-                                        style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Production
-                                        of Public Expenditure and Financial Accountability (PEFA) report</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div class="icon-circle"
-                                        style="background-color: #FF6B00; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.15rem;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor"
-                                            stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            style="margin-left: 2px;">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span style="font-size: 0.9rem; line-height: 1.5; color: var(--gray-600);">Analysis
-                                        of Revenue and Debt status</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="roles-image">
-                        <img src="{{ asset('assets/images/backgrounds/bg-footer.jpg') }}" alt="Budget Coins and Notes"
-                            style="width: 100%; height: auto; display: block;">
-                    </div>
-                </div>
+        <div class="bg-roles-grid">
+            <div class="bg-role-card">
+                <div class="bg-role-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="bg-role-text">Drafting Medium Term Expenditure Framework (MTEF)</div>
             </div>
-        </section>
 
-        <!-- Partners Section -->
-        <section class="section partners-section" id="partners">
-            <div class="container fade-up">
-                <div class="partners-header">
-                    <span class="partners-subtitle">DEVELOPMENT</span>
-                    <h2 class="partners-title">Partners</h2>
-                </div>
-                <div class="partners-marquee-wrapper">
-                    <div class="partners-marquee-content">
-                        <!-- Set 1 -->
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF">
-                        </div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}"
-                                alt="Bill & Melinda Gates Foundation"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}"
-                                alt="The World Bank"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
-                        <!-- Set 2 for seamless scrolling -->
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF">
-                        </div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}"
-                                alt="Bill & Melinda Gates Foundation"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}"
-                                alt="The World Bank"></div>
-                        <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
-                    </div>
-                </div>
+            <div class="bg-role-card">
+                <div class="bg-role-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="bg-role-text">Issuance of releases for Governor-approved requests</div>
             </div>
-        </section>
+
+            <div class="bg-role-card">
+                <div class="bg-role-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="bg-role-text">Production of Budget Expenditure Profile & Reports</div>
+            </div>
+
+            <div class="bg-role-card">
+                <div class="bg-role-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="bg-role-text">Compilations of Contractual Commitments of MDAs</div>
+            </div>
+
+            <div class="bg-role-card">
+                <div class="bg-role-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="bg-role-text">Public Expenditure & Financial Accountability (PEFA) Report</div>
+            </div>
+
+            <div class="bg-role-card">
+                <div class="bg-role-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="bg-role-text">Analysis of Revenue Performance and Debt Status</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Development Partners Section -->
+<section class="section partners-section" id="partners">
+    <div class="container fade-up">
+        <div class="partners-header">
+            <span class="partners-subtitle">DEVELOPMENT</span>
+            <h2 class="partners-title">Partners</h2>
+        </div>
+        <div class="partners-marquee-wrapper">
+            <div class="partners-marquee-content">
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}" alt="Bill & Melinda Gates Foundation"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}" alt="The World Bank"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
+                <!-- Duplicate set for marquee loop -->
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unicef.png') }}" alt="UNICEF"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-unfpa.png') }}" alt="UNFPA"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-gates-foundation.png') }}" alt="Bill & Melinda Gates Foundation"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-world-bank.png') }}" alt="The World Bank"></div>
+                <div class="partner-logo"><img src="{{ asset('assets/images/partners/partner-dfid.jpg') }}" alt="DFID"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection

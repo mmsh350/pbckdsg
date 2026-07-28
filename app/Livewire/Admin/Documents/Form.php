@@ -1,9 +1,13 @@
 <?php
 namespace App\Livewire\Admin\Documents;
+
 use App\Models\Document;
+use App\Models\Setting;
+use App\Services\SubscriberAlertService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class Form extends Component {
     use WithFileUploads;
@@ -37,9 +41,18 @@ class Form extends Component {
             'is_published' => 'boolean',
         ]);
 
+        $baseSlug = Str::slug($this->title);
+        $slugCheck = Document::where('slug', $baseSlug);
+        if ($this->document && $this->document->exists) {
+            $slugCheck->where('id', '!=', $this->document->id);
+        }
+        if ($slugCheck->exists()) {
+            $baseSlug .= '-' . uniqid();
+        }
+
         $data = [
             'title' => $this->title,
-            'slug' => Str::slug($this->title),
+            'slug' => $baseSlug,
             'category' => $this->category,
             'description' => $this->description,
             'is_published' => $this->is_published,
@@ -52,10 +65,33 @@ class Form extends Component {
             $data['file_type'] = strtolower($this->file_path->getClientOriginalExtension());
         }
 
+        $syncDates = (bool) Setting::get('sync_document_dates', 0);
+        $wasPublishedBefore = $this->document && $this->document->exists ? $this->document->is_published : false;
+
         if ($this->document && $this->document->exists) {
-            $this->document->update($data);
+            $this->document->fill($data);
+            if ($syncDates && $this->published_at) {
+                $customDate = Carbon::parse($this->published_at);
+                $this->document->created_at = $customDate;
+                $this->document->updated_at = $customDate;
+                $this->document->timestamps = false;
+            }
+            $this->document->save();
+            $docRecord = $this->document;
         } else {
-            Document::create($data);
+            $docRecord = new Document($data);
+            if ($syncDates && $this->published_at) {
+                $customDate = Carbon::parse($this->published_at);
+                $docRecord->created_at = $customDate;
+                $docRecord->updated_at = $customDate;
+                $docRecord->timestamps = false;
+            }
+            $docRecord->save();
+        }
+
+        // Send automated broadcast alert to subscribers if newly published
+        if ($docRecord->is_published && !$wasPublishedBefore) {
+            SubscriberAlertService::notifyNewDocument($docRecord);
         }
 
         session()->flash("message", "Saved successfully.");

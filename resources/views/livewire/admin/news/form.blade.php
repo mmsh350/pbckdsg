@@ -46,12 +46,17 @@
                             @error('published_at') <span class="text-red-500 text-xs mt-1 block font-medium">{{ $message }}</span> @enderror
                         </div>
                         <div class="flex flex-col justify-center">
-                            <label class="block text-sm font-semibold text-gray-700 mb-3">Visibility</label>
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" wire:model="is_published" class="sr-only peer">
-                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-100 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                <span class="ms-3 text-sm font-medium text-gray-700">Publish to Frontend</span>
-                            </label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Visibility Status</label>
+                            <button type="button" 
+                                    wire:click="$set('is_published', {{ $is_published ? 'false' : 'true' }})" 
+                                    class="inline-flex items-center gap-3 group focus:outline-none cursor-pointer">
+                                <div class="relative w-12 h-6 rounded-full transition-colors duration-200 {{ $is_published ? 'bg-blue-600' : 'bg-slate-300' }} p-0.5">
+                                    <div class="w-5 h-5 rounded-full bg-white shadow-sm transform transition-transform duration-200 {{ $is_published ? 'translate-x-6' : 'translate-x-0' }}"></div>
+                                </div>
+                                <span class="text-sm font-bold {{ $is_published ? 'text-blue-700' : 'text-slate-600' }}">
+                                    {{ $is_published ? 'Published to Frontend' : 'Draft (Hidden)' }}
+                                </span>
+                            </button>
                             @error('is_published') <span class="text-red-500 text-xs block mt-1 font-medium">{{ $message }}</span> @enderror
                         </div>
                     </div>

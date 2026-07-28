@@ -7,15 +7,32 @@
             <div class="bg-white overflow-hidden shadow-lg border border-gray-100 sm:rounded-xl">
                 <div class="px-8 py-6 border-b border-gray-100 bg-gray-50/50">
                     <h3 class="text-lg font-bold text-gray-800">{{ $slider ? 'Update' : 'Upload New' }} Slider</h3>
-                    <p class="text-sm text-gray-500 mt-1">Select and configure the images to display in the homepage banner.</p>
+                    <p class="text-sm text-gray-500 mt-1">Configure title, description and background image for the homepage hero banner.</p>
                 </div>
                 
                 <form wire:submit="save">
                     <div class="p-8 space-y-8">
 
+                        <!-- Title and Subtitle -->
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Banner Main Title</label>
+                                <input type="text" wire:model="title" placeholder="e.g. A World-Class & Dynamic Planning & Budget Commission" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-lg transition-colors bg-gray-50 focus:bg-white px-4 py-2.5">
+                                <p class="text-xs text-gray-500 mt-1">Heading text overlay for this slide. Leave blank for default homepage heading.</p>
+                                @error('title') <p class="mt-2 text-sm text-red-600 font-medium">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Subtitle / Description</label>
+                                <textarea wire:model="subtitle" rows="3" placeholder="e.g. Formulating policy frameworks, directing public expenditure..." class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-lg transition-colors bg-gray-50 focus:bg-white px-4 py-2.5"></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Detailed text description overlay for this slide.</p>
+                                @error('subtitle') <p class="mt-2 text-sm text-red-600 font-medium">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+
                         <!-- Image Upload Area -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Slider Images <span class="text-red-500">*</span></label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Slider Background Image <span class="text-red-500">*</span></label>
                             
                             @if ($slider && $slider->image && empty($images))
                                 <div class="mb-4">
@@ -41,7 +58,7 @@
                                     </svg>
                                     <div class="flex justify-center text-sm text-gray-600 mt-2">
                                         <label for="file-upload" class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                            <span>Upload images</span>
+                                            <span>Upload image</span>
                                             <input id="file-upload" wire:model="images" accept="image/*" multiple type="file" class="sr-only">
                                         </label>
                                         <p class="pl-1">or drag and drop</p>
@@ -57,9 +74,6 @@
                             </div>
                             @error('images') <p class="mt-2 text-sm text-red-600 font-medium">{{ $message }}</p> @enderror
                             @error('images.*') <p class="mt-2 text-sm text-red-600 font-medium">{{ $message }}</p> @enderror
-                            @if(!$slider)
-                                <p class="text-xs text-blue-600 bg-blue-50 p-2 rounded-lg mt-3 inline-block font-medium">Tip: You can select multiple images at once to create multiple sliders simultaneously.</p>
-                            @endif
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -98,4 +112,5 @@
                 </form>
             </div>
         </div>
+    </div>
 </div>

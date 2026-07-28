@@ -99,7 +99,7 @@
             }
 
             /* Inputs */
-            input[type="text"], input[type="email"], input[type="password"], textarea, select {
+            input[type="text"], input[type="email"], input[type="password"], input[type="date"], textarea, select {
                 border-radius: 0.5rem !important;
                 border: 1px solid #cbd5e1 !important;
                 padding: 0.5rem 0.75rem;
@@ -138,12 +138,12 @@
         </style>
     </head>
     <body class="font-sans antialiased text-slate-800 bg-slate-50">
-        <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
+        <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden w-full">
             <!-- Sidebar & Topbar (Navigation Component) -->
             <livewire:layout.navigation />
 
             <!-- Main Content Area -->
-            <div class="flex-1 flex flex-col overflow-hidden">
+            <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
                 <!-- Page Heading (Topbar Extra Content) -->
                 @if (isset($header))
                     <header class="bg-white border-b border-slate-200 sticky top-0 z-10 hidden lg:block">

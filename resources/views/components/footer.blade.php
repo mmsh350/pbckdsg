@@ -12,31 +12,24 @@
             </div>
             
             <div class="footer-col-links">
-                <h4 class="footer-heading">Who we are</h4>
+                <h4 class="footer-heading">Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Leadership</a></li>
-                    <li><a href="#">Our History</a></li>
-                    <li><a href="#">Volunteer</a></li>
-                    <li><a href="#">State Parties</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('departments') }}">Departments</a></li>
+                    <li><a href="{{ url('bureau') }}">Bureau of Statistics</a></li>
+                    <li><a href="{{ url('agency') }}">Residents Registration Agency</a></li>
+                    <li><a href="{{ url('downloads') }}">Downloads</a></li>
+                    <li><a href="{{ url('news') }}">News</a></li>
+                    <li><a href="{{ url('contact') }}">Contact Us</a></li>
                 </ul>
             </div>
             
-            <div class="footer-col-newsletter">
-                <h4 class="footer-heading">Suscribe Newsletter</h4>
-                <p class="newsletter-desc">Get free update right in your inbox, along with thousand others.</p>
-                <form class="newsletter-form" id="newsletterForm">
-                    <div class="input-group">
-                        <input type="email" placeholder="Your Email" required>
-                        <button type="submit" class="btn btn-blue">SIGN UP</button>
-                    </div>
-                </form>
-            </div>
+            <livewire:frontend.newsletter />
         </div>
         
         <div class="footer-bottom">
             <p>Copyright&copy; <span id="currentYear">{{ date('Y') }}</span> Planning & Budget Commission, Kaduna State. All rights reserved.</p>
-            <p class="dev-credit">Dev. by Mikro Tech Ltd. in Collaboration with KDSG Digital Service</p>
+            <p class="dev-credit">Dev. by Powerline Technology</p>
         </div>
     </div>
 </footer>

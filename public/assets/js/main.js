@@ -24,20 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
-    const newsletterForm = document.getElementById('newsletterForm');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = newsletterForm.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            btn.innerText = 'Wait...';
-            setTimeout(() => {
-                btn.innerText = 'Subscribed!';
-                newsletterForm.reset();
-                setTimeout(() => { btn.innerText = originalText; }, 3000);
-            }, 1000);
-        });
-    }
 });
 
 // Scroll to Top functionality
