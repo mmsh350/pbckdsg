@@ -39,13 +39,12 @@
                                     </td>
                                     <td align="right" valign="top" style="width: 70px;">
                                         @php
-                                            $logoFile = public_path('assets/images/logo/logo-kdsg-watermark.png');
-                                            if (!file_exists($logoFile)) {
-                                                $logoFile = public_path('assets/images/logo/logo-dark.png');
-                                            }
-                                            $logoSrc = file_exists($logoFile)
-                                                ? 'data:image/png;base64,' . base64_encode(file_get_contents($logoFile))
-                                                : url('assets/images/logo/logo-kdsg-watermark.png');
+                                            $logoPath = file_exists(public_path('assets/images/logo/logo-kdsg-watermark.png'))
+                                                ? 'assets/images/logo/logo-kdsg-watermark.png'
+                                                : (file_exists(public_path('assets/images/logo/logo-dark.png'))
+                                                    ? 'assets/images/logo/logo-dark.png'
+                                                    : 'assets/images/logo/logo-white.png');
+                                            $logoSrc = asset($logoPath);
                                         @endphp
                                         <img src="{{ $logoSrc }}" alt="Kaduna State Government Seal" width="60" style="width: 60px; max-width: 60px; height: auto; display: block; border: 0; border-radius: 6px;">
                                     </td>
